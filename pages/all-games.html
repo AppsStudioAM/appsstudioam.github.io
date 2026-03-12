@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Games | GameForge Studios</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .page-hero{padding:140px 40px 60px;text-align:center;}
+        .breadcrumb{display:flex;justify-content:center;gap:8px;font-size:0.85rem;color:var(--text-dim);margin-bottom:20px;}
+        .breadcrumb a{color:var(--primary);text-decoration:none;}
+        .page-content{padding:0 40px 80px;}
+        .page-content .games-grid{max-width:1400px;margin:0 auto;}
+    </style>
+</head>
+<body>
+    <div class="grid-overlay"></div>
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a class="logo" href="../index.html">
+                <div class="logo-icon"><i class="fas fa-gamepad"></i></div>
+                <div class="logo-text-wrap"><span class="logo-text">GAMEFORGE</span><span class="logo-sub">STUDIOS</span></div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#games" class="active">Games</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    <div class="page-hero">
+        <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><span>All Games</span></div>
+        <h1 class="section-title">All <span>Games</span></h1>
+        <p class="section-desc">Complete collection of our Android games.</p>
+    </div>
+    <div class="page-content">
+        <div class="games-grid" id="gamesGrid"></div>
+    </div>
+    <div class="modal-overlay" id="gameModal">
+        <div class="modal">
+            <div class="modal-header" id="modalHeader">
+                <div class="game-icon-wrapper" id="modalIcon"></div>
+                <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-category" id="modalCategory"></div>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-rating" id="modalRating"></div>
+                <p class="modal-desc" id="modalDesc"></p>
+                <h4 class="modal-features-title">Game Features</h4>
+                <div class="modal-features" id="modalFeatures"></div>
+                <div class="modal-actions">
+                    <a href="#" class="btn btn-primary" id="modalDownload"><i class="fab fa-google-play"></i><span>Play Store</span></a>
+                    <button class="btn btn-secondary" onclick="closeModal()"><i class="fas fa-arrow-left"></i><span>Back</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/games-data.js"></script>
+    <script>
+        var hamburger=document.getElementById("hamburger"),navLinks=document.getElementById("navLinks");
+        hamburger.addEventListener("click",function(){hamburger.classList.toggle("active");navLinks.classList.toggle("open");});
+        var grid=document.getElementById("gamesGrid"),gameModal=document.getElementById("gameModal");
+        GAMES.forEach(function(game){
+            var card=document.createElement("div");card.className="game-card visible";card.onclick=function(){openModal(game);};
+            var bc=game.badge==="new"?"badge-new":game.badge==="popular"?"badge-popular":"badge-featured";
+            var st="";for(var i=0;i<Math.floor(game.rating);i++)st+="\u2605";
+            card.innerHTML='<div class="game-card-image"><div class="game-visual" style="background:'+game.gradient+';"><div class="game-icon-wrapper" style="background:'+game.iconBg+';">'+game.icon+'</div></div><div class="game-card-overlay"></div><span class="game-card-badge '+bc+'">'+game.badge+'</span></div><div class="game-card-content"><div class="game-card-category">'+game.category+'</div><h3 class="game-card-title">'+game.title+'</h3><p class="game-card-desc">'+game.shortDesc+'</p><div class="game-card-meta"><div class="game-rating"><span class="stars">'+st+'</span><span class="rating-text">'+game.rating+'</span></div><div class="game-platform"><i class="fab fa-android"></i> Android</div></div><div class="game-download-btn"><i class="fas fa-eye"></i> View Details</div></div>';
+            grid.appendChild(card);
+        });
+        function openModal(g){document.getElementById("modalHeader").style.background=g.gradient;document.getElementById("modalIcon").style.background=g.iconBg;document.getElementById("modalIcon").innerHTML=g.icon;document.getElementById("modalCategory").textContent=g.category;document.getElementById("modalTitle").textContent=g.title;var s="";for(var i=0;i<Math.floor(g.rating);i++)s+="\u2605";document.getElementById("modalRating").innerHTML='<span style="color:#ffd700;">'+s+"</span> "+g.rating+" / 5.0";document.getElementById("modalDesc").textContent=g.fullDesc;document.getElementById("modalFeatures").innerHTML=g.features.map(function(f){return'<div class="modal-feature"><i class="fas fa-check-circle"></i> '+f+"</div>";}).join("");document.getElementById("modalDownload").href=g.playStoreUrl||"#";gameModal.classList.add("active");document.body.style.overflow="hidden";}
+        function closeModal(){gameModal.classList.remove("active");document.body.style.overflow="";}
+        gameModal.addEventListener("click",function(e){if(e.target===gameModal)closeModal();});
+        document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal();});
+    </script>
+</body>
+</html>

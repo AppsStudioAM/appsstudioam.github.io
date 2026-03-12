@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GameForge Studios - Independent Android Game Studio creating epic mobile gaming experiences. Explore 12+ handcrafted games.">
+    <meta name="keywords" content="android games, mobile games, indie games, gameforge, action games, puzzle games, racing games">
+    <meta name="author" content="GameForge Studios">
+    <meta property="og:title" content="GameForge Studios | Epic Android Games">
+    <meta property="og:description" content="Explore 12+ handcrafted Android games from action-packed arenas to mind-bending puzzles.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0a0a1a">
+    <title>GameForge Studios | Epic Android Games</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ====== LOADER ====== -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader">
+            <div class="loader-icon"></div>
+            <div class="loader-text">INITIALIZING</div>
+            <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+        </div>
+    </div>
+
+    <!-- ====== BACKGROUND EFFECTS ====== -->
+    <div class="bg-animation" id="bgAnimation"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- ====== CURSOR GLOW (desktop) ====== -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- ====== NAVIGATION ====== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a class="logo" href="#hero">
+                <div class="logo-icon"><i class="fas fa-gamepad"></i></div>
+                <div class="logo-text-wrap">
+                    <span class="logo-text">GAMEFORGE</span>
+                    <span class="logo-sub">STUDIOS</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="active" data-section="hero">Home</a></li>
+                <li><a href="#games" data-section="games">Games</a></li>
+                <li><a href="#about" data-section="about">About</a></li>
+                <li><a href="#stats" data-section="stats">Stats</a></li>
+                <li><a href="#testimonials" data-section="testimonials">Reviews</a></li>
+                <li><a href="#contact" data-section="contact">Contact</a></li>
+                <li><a href="#games" class="nav-cta"><i class="fas fa-rocket"></i> Explore Games</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== HERO SECTION ====== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-glow g1"></div>
+        <div class="hero-bg-glow g2"></div>
+        <div class="hero-bg-glow g3"></div>
+        <div class="hero-floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                <span>12 Games Available Now</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="line1">
+                    <span class="word" style="--delay:0.1s">WE</span>
+                    <span class="word" style="--delay:0.2s">CREATE</span>
+                </span>
+                <span class="line2">
+                    <span class="word" style="--delay:0.3s">EPIC</span>
+                    <span class="word" style="--delay:0.4s">ANDROID</span>
+                </span>
+                <span class="line3">
+                    <span class="word" style="--delay:0.5s">GAMING</span>
+                    <span class="word" style="--delay:0.6s">EXPERIENCES</span>
+                </span>
+            </h1>
+            <p class="hero-subtitle">
+                Dive into our collection of handcrafted Android games &mdash; from 
+                action-packed arenas to mind-bending puzzles. Every game built 
+                with passion, precision, and pure gaming love.
+            </p>
+            <div class="hero-buttons">
+                <a href="#games" class="btn btn-primary">
+                    <i class="fas fa-play"></i>
+                    <span>Browse Games</span>
+                    <div class="btn-shine"></div>
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Learn More</span>
+                </a>
+                <a href="pages/all-games.html" class="btn btn-outline">
+                    <i class="fas fa-th"></i>
+                    <span>View All</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="12" data-suffix="+">0</div>
+                    <div class="stat-label">Games</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="50" data-suffix="K+">0</div>
+                    <div class="stat-label">Downloads</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="4.8" data-suffix="">0</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="15" data-suffix="K+">0</div>
+                    <div class="stat-label">Players</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <div class="mouse">
+                <div class="mouse-wheel"></div>
+            </div>
+            <span class="scroll-text">Scroll to Explore</span>
+        </div>
+    </section>
+
+    <!-- ====== MARQUEE BANNER ====== -->
+    <div class="marquee-banner">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span>&#9889; BLITZ STORM ARENA</span>
+                <span>&#129482; BLOCK FUSION</span>
+                <span>&#128142; CRYSTAL CASCADE</span>
+                <span>&#129359; DISC STRIKE ARENA</span>
+                <span>&#127922; LUDOQUEST</span>
+                <span>&#127939; MYSTIC RUNNER</span>
+                <span>&#128123; PHANTOM STRIKE</span>
+                <span>&#127919; PRECISION SHOT</span>
+                <span>&#127920; ROLL MASTER QUEST</span>
+                <span>&#128081; ROYAL DICE EMPIRE</span>
+                <span>&#128013; SERPENT SURGE</span>
+                <span>&#127950;&#65039; TURBO TRAIL RACER</span>
+                <span>&#9889; BLITZ STORM ARENA</span>
+                <span>&#129482; BLOCK FUSION</span>
+                <span>&#128142; CRYSTAL CASCADE</span>
+                <span>&#129359; DISC STRIKE ARENA</span>
+                <span>&#127922; LUDOQUEST</span>
+                <span>&#127939; MYSTIC RUNNER</span>
+                <span>&#128123; PHANTOM STRIKE</span>
+                <span>&#127919; PRECISION SHOT</span>
+                <span>&#127920; ROLL MASTER QUEST</span>
+                <span>&#128081; ROYAL DICE EMPIRE</span>
+                <span>&#128013; SERPENT SURGE</span>
+                <span>&#127950;&#65039; TURBO TRAIL RACER</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== GAMES SECTION ====== -->
+    <section class="section" id="games">
+        <div class="section-header reveal">
+            <div class="section-tag"><i class="fas fa-fire"></i> Our Collection</div>
+            <h2 class="section-title">Featured <span>Games</span></h2>
+            <p class="section-desc">Explore our diverse portfolio of Android games crafted with passion for every type of gamer.</p>
+        </div>
+
+        <div class="filter-tabs reveal" id="filterTabs">
+            <button class="filter-tab active" data-filter="all">
+                <i class="fas fa-border-all"></i> All Games
+            </button>
+            <button class="filter-tab" data-filter="action">
+                <i class="fas fa-crosshairs"></i> Action
+            </button>
+            <button class="filter-tab" data-filter="puzzle">
+                <i class="fas fa-puzzle-piece"></i> Puzzle
+            </button>
+            <button class="filter-tab" data-filter="racing">
+                <i class="fas fa-flag-checkered"></i> Racing
+            </button>
+            <button class="filter-tab" data-filter="board">
+                <i class="fas fa-chess-board"></i> Board
+            </button>
+            <button class="filter-tab" data-filter="arcade">
+                <i class="fas fa-ghost"></i> Arcade
+            </button>
+        </div>
+
+        <div class="games-count reveal" id="gamesCount">Showing 12 games</div>
+
+        <div class="games-grid" id="gamesGrid"></div>
+    </section>
+
+    <!-- ====== FEATURED GAME SPOTLIGHT ====== -->
+    <section class="section spotlight-section" id="spotlight">
+        <div class="spotlight-bg"></div>
+        <div class="spotlight-container reveal">
+            <div class="spotlight-content">
+                <div class="section-tag"><i class="fas fa-star"></i> Game Spotlight</div>
+                <h2 class="spotlight-title">Blitz Storm Arena</h2>
+                <p class="spotlight-desc">
+                    Our flagship title &mdash; an intense multiplayer battle arena featuring 
+                    electrifying combat, 20+ unique characters, ranked matchmaking, 
+                    and real-time PvP action. Dominate the arena and climb the global 
+                    leaderboard!
+                </p>
+                <div class="spotlight-features">
+                    <div class="spotlight-feature">
+                        <i class="fas fa-users"></i>
+                        <span>20+ Characters</span>
+                    </div>
+                    <div class="spotlight-feature">
+                        <i class="fas fa-trophy"></i>
+                        <span>Ranked PvP</span>
+                    </div>
+                    <div class="spotlight-feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>Real-time Action</span>
+                    </div>
+                    <div class="spotlight-feature">
+                        <i class="fas fa-globe"></i>
+                        <span>Global Leaderboard</span>
+                    </div>
+                </div>
+                <div class="spotlight-buttons">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fab fa-google-play"></i>
+                        <span>Download Now</span>
+                        <div class="btn-shine"></div>
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Watch Trailer</span>
+                    </a>
+                </div>
+            </div>
+            <div class="spotlight-visual">
+                <div class="spotlight-card">
+                    <div class="spotlight-icon-wrap">&#9889;</div>
+                    <div class="spotlight-card-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ABOUT / FEATURES ====== -->
+    <section class="section" id="about">
+        <div class="section-header reveal">
+            <div class="section-tag"><i class="fas fa-gem"></i> Why Choose Us</div>
+            <h2 class="section-title">Why Gamers <span>Love Us</span></h2>
+            <p class="section-desc">We pour heart, soul, and countless hours into every pixel and every line of code.</p>
+        </div>
+
+        <div class="features-grid reveal">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3 class="feature-title">High Performance</h3>
+                <p class="feature-desc">Optimized for smooth 60fps gameplay on all Android devices with minimal battery drain.</p>
+                <div class="feature-number">01</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                <h3 class="feature-title">Stunning Visuals</h3>
+                <p class="feature-desc">Beautiful handcrafted graphics, particle effects, and immersive UI/UX in every game.</p>
+                <div class="feature-number">02</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3 class="feature-title">Multiplayer Ready</h3>
+                <p class="feature-desc">Challenge friends or play worldwide in real-time multiplayer battles and tournaments.</p>
+                <div class="feature-number">03</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="feature-title">100% Safe</h3>
+                <p class="feature-desc">No hidden permissions, no data abuse. Your privacy is always our top priority.</p>
+                <div class="feature-number">04</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
+                <h3 class="feature-title">Regular Updates</h3>
+                <p class="feature-desc">New content, levels, characters, and features added consistently every month.</p>
+                <div class="feature-number">05</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3 class="feature-title">Offline Play</h3>
+                <p class="feature-desc">Most games work perfectly offline. Play anywhere, anytime, no WiFi needed.</p>
+                <div class="feature-number">06</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== STATS BANNER ====== -->
+    <div class="stats-banner" id="stats">
+        <div class="stats-grid reveal">
+            <div class="stats-item">
+                <div class="stats-icon-wrap"><i class="fas fa-gamepad"></i></div>
+                <div class="stats-number" data-count="12" data-suffix="">0</div>
+                <div class="stats-label">Games Published</div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-icon-wrap"><i class="fas fa-download"></i></div>
+                <div class="stats-number" data-count="50000" data-suffix="">0</div>
+                <div class="stats-label">Total Downloads</div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-icon-wrap"><i class="fas fa-star"></i></div>
+                <div class="stats-number" data-count="4.8" data-suffix="">0</div>
+                <div class="stats-label">Average Rating</div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-icon-wrap"><i class="fas fa-heart"></i></div>
+                <div class="stats-number" data-count="15000" data-suffix="">0</div>
+                <div class="stats-label">Happy Players</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== TESTIMONIALS ====== -->
+    <section class="section" id="testimonials">
+        <div class="section-header reveal">
+            <div class="section-tag"><i class="fas fa-quote-left"></i> Player Reviews</div>
+            <h2 class="section-title">What Gamers <span>Say</span></h2>
+            <p class="section-desc">Real reviews from real players who love our games.</p>
+        </div>
+
+        <div class="testimonials-grid reveal">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-text">"Blitz Storm Arena is the best action game I have played on Android. The PvP battles are insane! Highly recommend to everyone."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #00f0ff, #7b2fff);">A</div>
+                    <div>
+                        <div class="author-name">Alex Thunder</div>
+                        <div class="author-game">Playing Blitz Storm Arena</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-text">"Crystal Cascade is so beautiful and relaxing. The cascade effects are mesmerizing. Perfect game to unwind after a long day!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #e040fb, #7c4dff);">S</div>
+                    <div>
+                        <div class="author-name">Sarah Gem</div>
+                        <div class="author-game">Playing Crystal Cascade</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-text">"LudoQuest with online multiplayer is a game changer! The quest mode adds so much depth. My whole family plays it together."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #ff9100, #ff3d00);">R</div>
+                    <div>
+                        <div class="author-name">Raj Patel</div>
+                        <div class="author-game">Playing LudoQuest</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== TECH STACK ====== -->
+    <section class="section" id="techstack">
+        <div class="section-header reveal">
+            <div class="section-tag"><i class="fas fa-code"></i> Our Tech</div>
+            <h2 class="section-title">Built With <span>Modern Tech</span></h2>
+            <p class="section-desc">We use the latest tools and technologies to build amazing games.</p>
+        </div>
+        <div class="tech-grid reveal">
+            <div class="tech-item"><i class="fab fa-android"></i><span>Android SDK</span></div>
+            <div class="tech-item"><i class="fab fa-java"></i><span>Java</span></div>
+            <div class="tech-item"><i class="fas fa-fire"></i><span>Firebase</span></div>
+            <div class="tech-item"><i class="fas fa-cogs"></i><span>Game Engine</span></div>
+            <div class="tech-item"><i class="fas fa-database"></i><span>SQLite</span></div>
+            <div class="tech-item"><i class="fas fa-cloud"></i><span>Cloud Sync</span></div>
+        </div>
+    </section>
+
+    <!-- ====== CONTACT ====== -->
+    <section class="section" id="contact">
+        <div class="contact-container reveal">
+            <div class="contact-info">
+                <div class="section-tag"><i class="fas fa-envelope"></i> Get In Touch</div>
+                <h2 class="section-title" style="text-align:left;margin-top:15px;">Let's <span>Connect</span></h2>
+                <p class="section-desc" style="text-align:left;margin:0 0 30px 0;">Have questions, feedback, or want to collaborate? We would love to hear from you!</p>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-method-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="contact-method-label">Email</div>
+                            <div class="contact-method-value">hello@gameforgestudios.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-method-icon"><i class="fab fa-discord"></i></div>
+                        <div>
+                            <div class="contact-method-label">Discord</div>
+                            <div class="contact-method-value">discord.gg/gameforge</div>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-method-icon"><i class="fab fa-twitter"></i></div>
+                        <div>
+                            <div class="contact-method-label">Twitter</div>
+                            <div class="contact-method-value">@gameforgestudios</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-wrap">
+                <h3 class="form-title">Send us a Message</h3>
+                <form class="contact-form" id="contactForm" onsubmit="handleContact(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <select required>
+                            <option value="">Select a topic</option>
+                            <option>Game Feedback</option>
+                            <option>Bug Report</option>
+                            <option>Business Inquiry</option>
+                            <option>General Question</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="4" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send Message</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== NEWSLETTER ====== -->
+    <div class="newsletter-banner">
+        <div class="newsletter-inner reveal">
+            <div class="newsletter-text">
+                <h3><i class="fas fa-bell"></i> Stay in the Loop</h3>
+                <p>Get notified when we launch new games and updates.</p>
+            </div>
+            <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button type="submit" class="newsletter-btn"><i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a class="logo" href="#hero">
+                    <div class="logo-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="logo-text-wrap">
+                        <span class="logo-text">GAMEFORGE</span>
+                        <span class="logo-sub">STUDIOS</span>
+                    </div>
+                </a>
+                <p>Independent Android game studio creating epic gaming experiences. Every game is built with passion, creativity, and a drive to push mobile gaming forward.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#games"><i class="fas fa-chevron-right"></i> Games</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    <li><a href="#stats"><i class="fas fa-chevron-right"></i> Stats</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Top Games</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blitz Storm Arena</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Phantom Strike</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Crystal Cascade</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Royal Dice Empire</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Turbo Trail Racer</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="pages/faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="pages/privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    <li><a href="pages/terms.html"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    <li><a href="mailto:hello@gameforgestudios.com"><i class="fas fa-chevron-right"></i> Email Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 <span>GameForge Studios</span>. All rights reserved.</p>
+            <p>Crafted with <i class="fas fa-heart" style="color:#ff2d75;"></i> for Gamers Worldwide</p>
+        </div>
+    </footer>
+
+    <!-- ====== BACK TO TOP ====== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ====== GAME DETAIL MODAL ====== -->
+    <div class="modal-overlay" id="gameModal">
+        <div class="modal">
+            <div class="modal-header" id="modalHeader">
+                <div class="game-icon-wrapper" id="modalIcon"></div>
+                <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-category" id="modalCategory"></div>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-rating" id="modalRating"></div>
+                <p class="modal-desc" id="modalDesc"></p>
+                <h4 class="modal-features-title">Game Features</h4>
+                <div class="modal-features" id="modalFeatures"></div>
+                <div class="modal-actions">
+                    <a href="#" class="btn btn-primary" id="modalDownload">
+                        <i class="fab fa-google-play"></i>
+                        <span>Get on Play Store</span>
+                        <div class="btn-shine"></div>
+                    </a>
+                    <button class="btn btn-secondary" onclick="closeModal()">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Go Back</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== TOAST ====== -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMsg">Success!</span>
+    </div>
+
+    <script src="js/games-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

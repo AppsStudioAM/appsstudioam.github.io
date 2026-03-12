@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | GameForge Studios</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .page-hero{padding:140px 40px 40px;text-align:center;}
+        .faq-container{max-width:800px;margin:0 auto;padding:40px 40px 80px;}
+        .faq-item{background:var(--gradient-card);border:1px solid rgba(255,255,255,0.05);border-radius:16px;margin-bottom:12px;overflow:hidden;}
+        .faq-question{padding:20px 25px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:1.05rem;transition:color 0.3s;}
+        .faq-question:hover{color:var(--primary);}
+        .faq-question i{transition:transform 0.3s;color:var(--primary);}
+        .faq-item.active .faq-question i{transform:rotate(45deg);}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s,padding 0.3s;color:var(--text-dim);line-height:1.8;font-size:0.95rem;padding:0 25px;}
+        .faq-item.active .faq-answer{max-height:200px;padding:0 25px 20px;}
+        .breadcrumb{display:flex;justify-content:center;gap:8px;font-size:0.85rem;color:var(--text-dim);margin-bottom:20px;}
+        .breadcrumb a{color:var(--primary);text-decoration:none;}
+    </style>
+</head>
+<body>
+    <div class="grid-overlay"></div>
+    <nav class="navbar scrolled"><div class="nav-container"><a class="logo" href="../index.html"><div class="logo-icon"><i class="fas fa-gamepad"></i></div><div class="logo-text-wrap"><span class="logo-text">GAMEFORGE</span><span class="logo-sub">STUDIOS</span></div></a><ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../index.html#games">Games</a></li><li><a href="../index.html#contact">Contact</a></li></ul></div></nav>
+    <div class="page-hero"><div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><span>FAQ</span></div><h1 class="section-title">Frequently Asked <span>Questions</span></h1></div>
+    <div class="faq-container">
+        <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">Are your games free to play? <i class="fas fa-plus"></i></div><div class="faq-answer">Yes! All games are free to download and play with optional cosmetic purchases.</div></div>
+        <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">Do your games work offline? <i class="fas fa-plus"></i></div><div class="faq-answer">Most games support offline play. Multiplayer features require internet.</div></div>
+        <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">What Android version is required? <i class="fas fa-plus"></i></div><div class="faq-answer">Android 6.0+ supported. Android 10+ recommended for best experience.</div></div>
+        <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">How can I report a bug? <i class="fas fa-plus"></i></div><div class="faq-answer">Use our Contact page, email us, or reach us on Discord.</div></div>
+        <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('active')">Will you release games for iOS? <i class="fas fa-plus"></i></div><div class="faq-answer">iOS versions are in our roadmap for the future. Stay tuned!</div></div>
+    </div>
+</body>
+</html>

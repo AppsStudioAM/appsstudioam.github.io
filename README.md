@@ -1,4 +1,4 @@
-# GameForge Studios Website
+# Apps Studios AM Website
 
 Professional gaming portfolio website showcasing 12 Android games.
 

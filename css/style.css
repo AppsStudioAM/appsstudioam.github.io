@@ -156,8 +156,22 @@ body { font-family:'Rajdhani',sans-serif; background:var(--darker); color:var(--
 .game-card:hover { transform:translateY(-8px); border-color:rgba(0,240,255,0.25); box-shadow:0 20px 50px rgba(0,0,0,0.3),var(--glow-primary); }
 .game-card-image { position:relative; height:210px; overflow:hidden; }
 .game-visual { width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative; }
-.game-icon-wrapper { position:relative; z-index:2; width:85px; height:85px; border-radius:22px; display:flex; align-items:center; justify-content:center; font-size:2.4rem; box-shadow:0 10px 30px rgba(0,0,0,0.3); transition:transform 0.3s; }
+.game-icon-wrapper { position:relative; z-index:2; width:85px; height:85px; border-radius:22px; display:flex; align-items:center; justify-content:center; font-size:2.4rem; box-shadow:0 10px 30px rgba(0,0,0,0.3); transition:transform 0.3s; overflow:hidden; }
 .game-card:hover .game-icon-wrapper { transform:scale(1.1) rotate(-3deg); }
+
+/* ── SVG Icon Support ── */
+.game-icon-wrapper.svg-icon {
+    padding:6px;
+    font-size:0;
+    background:transparent !important;
+}
+.game-icon-wrapper.svg-icon svg {
+    width:100%;
+    height:100%;
+    display:block;
+    border-radius:16px;
+}
+
 .game-card-overlay { position:absolute; bottom:0; left:0; width:100%; height:50%; background:linear-gradient(transparent,var(--card-bg)); }
 .game-card-badge { position:absolute; top:14px; right:14px; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; z-index:3; }
 .badge-new { background:var(--gradient-accent); color:white; }
@@ -177,6 +191,11 @@ body { font-family:'Rajdhani',sans-serif; background:var(--darker); color:var(--
 .game-download-btn { display:flex; align-items:center; gap:8px; justify-content:center; padding:10px 18px; background:linear-gradient(135deg,rgba(0,240,255,0.1),rgba(123,47,255,0.1)); border:1px solid rgba(0,240,255,0.15); border-radius:10px; color:var(--primary); font-weight:600; font-size:0.85rem; margin-top:14px; transition:var(--transition); text-transform:uppercase; letter-spacing:0.5px; }
 .game-card:hover .game-download-btn { background:var(--gradient-main); color:var(--dark); border-color:transparent; }
 
+/* ── Detail Page Button Variant ── */
+.game-download-btn .fa-external-link-alt {
+    font-size:0.75rem;
+}
+
 .spotlight-section { overflow:hidden; }
 .spotlight-bg { position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(135deg,rgba(0,240,255,0.03),rgba(123,47,255,0.03)); z-index:-1; }
 .spotlight-container { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
@@ -190,6 +209,21 @@ body { font-family:'Rajdhani',sans-serif; background:var(--darker); color:var(--
 .spotlight-card { width:280px; height:320px; background:linear-gradient(145deg,#1a1a4e,#0d47a1); border-radius:30px; display:flex; align-items:center; justify-content:center; position:relative; border:1px solid rgba(0,240,255,0.15); animation:spotlightFloat 4s ease-in-out infinite; }
 @keyframes spotlightFloat { 0%,100%{transform:translateY(0) rotate(-2deg);} 50%{transform:translateY(-15px) rotate(2deg);} }
 .spotlight-icon-wrap { font-size:5rem; filter:drop-shadow(0 0 30px rgba(0,240,255,0.3)); }
+
+/* ── Spotlight SVG Icon Support ── */
+.spotlight-icon-wrap.svg-icon {
+    font-size:0;
+    width:160px;
+    height:160px;
+}
+.spotlight-icon-wrap.svg-icon svg {
+    width:100%;
+    height:100%;
+    display:block;
+    border-radius:20px;
+    filter:drop-shadow(0 0 30px rgba(0,240,255,0.3));
+}
+
 .spotlight-card-glow { position:absolute; width:200px; height:200px; background:var(--primary); border-radius:50%; filter:blur(80px); opacity:0.15; }
 
 .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; max-width:1200px; margin:0 auto; }
@@ -280,6 +314,20 @@ body { font-family:'Rajdhani',sans-serif; background:var(--darker); color:var(--
 .modal-overlay.active .modal { transform:scale(1) translateY(0); }
 .modal-header { height:170px; display:flex; align-items:center; justify-content:center; position:relative; }
 .modal-header .game-icon-wrapper { width:95px; height:95px; font-size:2.8rem; border-radius:24px; }
+
+/* ── Modal SVG Icon Support ── */
+.modal-header .game-icon-wrapper.svg-icon {
+    padding:8px;
+    font-size:0;
+    background:transparent !important;
+}
+.modal-header .game-icon-wrapper.svg-icon svg {
+    width:100%;
+    height:100%;
+    display:block;
+    border-radius:18px;
+}
+
 .modal-close { position:absolute; top:12px; right:12px; width:34px; height:34px; border-radius:10px; background:rgba(255,255,255,0.1); border:none; color:var(--text); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; transition:var(--transition); }
 .modal-close:hover { background:var(--accent); color:white; }
 .modal-body { padding:28px; }
@@ -293,6 +341,11 @@ body { font-family:'Rajdhani',sans-serif; background:var(--darker); color:var(--
 .modal-feature i { color:var(--success); font-size:0.75rem; }
 .modal-actions { display:flex; gap:10px; }
 .modal-actions .btn { flex:1; justify-content:center; padding:12px 16px; font-size:0.9rem; }
+
+/* ── Modal Detail Page Button ── */
+.modal-actions .btn .fa-external-link-alt {
+    font-size:0.8rem;
+}
 
 .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(100px); background:var(--card-bg); border:1px solid rgba(0,240,255,0.2); padding:14px 28px; border-radius:14px; display:flex; align-items:center; gap:10px; font-weight:600; z-index:9999; transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275); box-shadow:0 10px 30px rgba(0,0,0,0.3); }
 .toast.show { transform:translateX(-50%) translateY(0); }
@@ -342,4 +395,6 @@ body { font-family:'Rajdhani',sans-serif; background:var(--darker); color:var(--
     .btn{justify-content:center;}
     .spotlight-card{width:220px;height:260px;}
     .spotlight-icon-wrap{font-size:3.5rem;}
+    /* SVG spotlight icon scales on mobile */
+    .spotlight-icon-wrap.svg-icon{width:120px;height:120px;}
 }

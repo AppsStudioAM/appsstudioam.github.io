@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="description" content="Block Fusion — Drag, drop & fuse matching blocks. 5 game modes, daily challenges, achievements, shop & leaderboards. Play now!">
+<meta name="keywords" content="block fusion, puzzle game, merge blocks, android game, Apps Studio AM">
+<meta name="author" content="Apps Studio AM">
+<meta name="theme-color" content="#0a0a1a">
+<title>Block Fusion | Apps Studio AM</title>
+<link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ============================================
+   BLOCK FUSION FEATURE PAGE
+   Matches Apps Studio AM website theme
+   ============================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --bg:#0a0a1a;--surface:#0f0f2a;--card:#111133;--card-border:rgba(255,255,255,.06);
+ --gold:#FFD700;--gold-dim:rgba(255,215,0,.15);--gold-glow:rgba(255,215,0,.3);
+ --accent:#FF9800;--cyan:#00f0ff;--purple:#7b2fff;--pink:#e040fb;
+ --text:#ffffff;--text-dim:#7a7aaa;--text-muted:#555577;
+ --radius:16px;--radius-sm:10px;--radius-lg:24px;
+ --font-display:'Orbitron',sans-serif;--font-body:'Rajdhani',sans-serif;--font-ui:'Inter',sans-serif;
+ /* Game-specific vars */
+ --g-bg:#0f0f1a;--g-surface:#1a1a2e;--g-card:#16213e;--g-primary:#e94560;
+ --g-primary-glow:rgba(233,69,96,.3);--g-grid-bg:#0a0a15;--g-cell-bg:#1e1e3a;
+ --g-accent:#ffd700;--g-success:#66bb6a;--g-danger:#ef5350;
+ --g-coin:#ffd700;--g-gem:#e040fb;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+ul{list-style:none}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:3px}
+
+/* ── NAVIGATION ── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,26,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);transition:all .3s}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-brand .icon{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--accent));display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-brand .text{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:1px}
+.nav-brand .sub{font-size:9px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-links a{padding:8px 16px;border-radius:var(--radius-sm);font-family:var(--font-ui);font-size:13px;font-weight:500;color:var(--text-dim);transition:all .2s}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-links .btn-play{background:linear-gradient(135deg,var(--gold),var(--accent));color:#000;font-weight:700;padding:8px 20px}
+.nav-links .btn-play:hover{transform:translateY(-1px);box-shadow:0 4px 20px var(--gold-glow)}
+.mobile-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,var(--gold-dim) 0%,transparent 70%);pointer-events:none;opacity:.4}
+.hero::after{content:'';position:absolute;bottom:-100px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(233,69,96,.1) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-content{display:flex;flex-direction:column;gap:20px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--gold-dim);border:1px solid rgba(255,215,0,.2);border-radius:30px;font-size:12px;font-weight:600;color:var(--gold);width:fit-content;font-family:var(--font-ui)}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-family:var(--font-display);font-size:clamp(36px,6vw,64px);font-weight:900;line-height:1.1;letter-spacing:-1px}
+.hero-title .highlight{background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-subtitle{font-size:18px;color:var(--text-dim);line-height:1.7;max-width:480px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px}
+.hero-stat{text-align:center}
+.hero-stat .val{font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--gold)}
+.hero-stat .lbl{font-size:12px;color:var(--text-dim)}
+.hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
+.hero-icon-wrap{width:280px;height:280px;border-radius:40px;display:flex;align-items:center;justify-content:center;font-size:120px;position:relative;background:linear-gradient(135deg,#0D1B2A,#1A1A2E);border:2px solid rgba(255,215,0,.15);box-shadow:0 20px 80px rgba(0,0,0,.5),0 0 60px var(--gold-dim)}
+.hero-icon-wrap::before{content:'';position:absolute;inset:-3px;border-radius:42px;background:linear-gradient(135deg,var(--gold),var(--accent),var(--g-primary));z-index:-1;opacity:.4;filter:blur(1px)}
+.hero-icon-wrap svg{width:200px;height:200px}
+.floating-badge{position:absolute;padding:8px 14px;border-radius:12px;background:var(--card);border:1px solid var(--card-border);font-size:13px;font-weight:600;font-family:var(--font-ui);box-shadow:0 8px 30px rgba(0,0,0,.3);animation:float 4s ease-in-out infinite}
+.floating-badge.b1{top:-10px;right:-30px;animation-delay:0s}
+.floating-badge.b2{bottom:20px;left:-40px;animation-delay:1s}
+.floating-badge.b3{bottom:-10px;right:-20px;animation-delay:2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:var(--radius);font-family:var(--font-body);font-size:16px;font-weight:700;border:none;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--accent));color:#000;box-shadow:0 4px 20px var(--gold-glow)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--gold-glow)}
+.btn-secondary{background:var(--card);color:var(--text);border:1px solid var(--card-border)}
+.btn-secondary:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}
+.btn-outline{background:transparent;color:var(--gold);border:2px solid var(--gold)}
+.btn-outline:hover{background:var(--gold-dim)}
+.btn-shine{position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s}
+.btn:hover .btn-shine{left:100%}
+
+/* ── SECTIONS ── */
+.section{padding:100px 24px;max-width:1200px;margin:0 auto}
+.section-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--gold-dim);border:1px solid rgba(255,215,0,.15);border-radius:30px;font-size:12px;font-weight:600;color:var(--gold);margin-bottom:16px;font-family:var(--font-ui)}
+.section-title{font-family:var(--font-display);font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:12px;line-height:1.2}
+.section-title span{background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section-desc{font-size:16px;color:var(--text-dim);max-width:600px;line-height:1.7}
+.section-header{text-align:center;margin-bottom:50px}
+.section-header .section-desc{margin:0 auto}
+
+/* ── FEATURE CARDS ── */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.feature-card{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius-lg);padding:30px;position:relative;overflow:hidden;transition:all .3s}
+.feature-card:hover{transform:translateY(-4px);border-color:rgba(255,215,0,.2);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.feature-card .f-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;background:var(--gold-dim);color:var(--gold)}
+.feature-card h3{font-family:var(--font-display);font-size:18px;font-weight:700;margin-bottom:8px}
+.feature-card p{font-size:14px;color:var(--text-dim);line-height:1.6}
+.feature-card .f-num{position:absolute;top:20px;right:20px;font-family:var(--font-display);font-size:48px;font-weight:900;color:rgba(255,255,255,.03);line-height:1}
+.feature-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.feature-card:hover::after{opacity:1}
+
+/* ── GAME MODES ── */
+.modes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.mode-card{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;text-align:center;transition:all .3s;cursor:default}
+.mode-card:hover{transform:translateY(-4px);border-color:rgba(255,215,0,.2)}
+.mode-card .m-emoji{font-size:40px;margin-bottom:12px;display:block}
+.mode-card h4{font-family:var(--font-display);font-size:15px;font-weight:700;margin-bottom:6px}
+.mode-card p{font-size:13px;color:var(--text-dim);line-height:1.5}
+
+/* ── FEATURE LIST ── */
+.feature-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.feature-list-item{display:flex;align-items:flex-start;gap:12px;padding:16px;background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s}
+.feature-list-item:hover{border-color:rgba(255,215,0,.15);background:rgba(17,17,51,.8)}
+.feature-list-item .fl-icon{width:36px;height:36px;border-radius:10px;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:var(--gold)}
+.feature-list-item .fl-text h4{font-size:14px;font-weight:700;margin-bottom:2px}
+.feature-list-item .fl-text p{font-size:12px;color:var(--text-dim)}
+
+/* ── STATS BANNER ── */
+.stats-banner{background:linear-gradient(135deg,var(--surface),var(--card));border-top:1px solid var(--card-border);border-bottom:1px solid var(--card-border);padding:60px 24px}
+.stats-row{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;max-width:900px;margin:0 auto}
+.stat-block{text-align:center;min-width:120px}
+.stat-block .s-icon{font-size:28px;margin-bottom:8px;display:block}
+.stat-block .s-val{font-family:var(--font-display);font-size:32px;font-weight:900;color:var(--gold)}
+.stat-block .s-lbl{font-size:13px;color:var(--text-dim);margin-top:4px}
+
+/* ── DIVIDER ── */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--card-border),transparent);margin:0 auto;max-width:800px}
+
+/* ── PLAY SECTION ── */
+.play-section{padding:60px 24px;text-align:center}
+.play-section .section-header{margin-bottom:30px}
+.game-container{max-width:430px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;border:2px solid rgba(255,215,0,.15);box-shadow:0 20px 80px rgba(0,0,0,.5),0 0 40px var(--gold-dim);position:relative;background:var(--g-bg)}
+.game-container-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--accent));color:#000;padding:4px 20px;border-radius:0 0 10px 10px;font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:2px;z-index:10}
+
+/* ── DOWNLOAD CTA ── */
+.cta-section{padding:100px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,var(--gold-dim) 0%,transparent 70%);pointer-events:none;opacity:.3}
+.cta-inner{max-width:600px;margin:0 auto;position:relative;z-index:1}
+.cta-inner h2{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:900;margin-bottom:16px}
+.cta-inner p{font-size:16px;color:var(--text-dim);margin-bottom:30px;line-height:1.7}
+.cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+.page-footer{padding:40px 24px;text-align:center;border-top:1px solid var(--card-border);background:var(--surface)}
+.page-footer p{font-size:13px;color:var(--text-dim)}
+.page-footer a{color:var(--gold)}
+.page-footer .heart{color:#ff2d75}
+
+/* ── SCROLL ANIMATION ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===========================
+   GAME ENGINE STYLES
+   =========================== */
+#game-app{width:100%;max-width:430px;margin:0 auto;position:relative;min-height:600px;font-family:var(--font-ui);-webkit-user-select:none;user-select:none}
+.g-screen{position:absolute;inset:0;display:none;flex-direction:column;opacity:0;transition:opacity .3s}
+.g-screen.active{display:flex;opacity:1}
+.g-screen-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 14px 20px}
+.g-screen-scroll::-webkit-scrollbar{display:none}
+
+/* Game Header */
+.g-header{display:flex;align-items:center;padding:10px 14px;gap:8px;background:var(--g-surface);border-bottom:1px solid rgba(255,255,255,.05)}
+.g-header h2{flex:1;font-size:16px;font-weight:700;font-family:var(--font-display)}
+.g-btn-back{width:34px;height:34px;border-radius:9px;border:none;background:var(--g-card);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.g-currency-bar{display:flex;gap:10px;align-items:center;font-size:13px;font-weight:600}
+.g-currency-bar span{display:flex;align-items:center;gap:3px}
+
+/* Game Buttons */
+.g-btn{padding:12px 22px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:transform .15s;position:relative;overflow:hidden;font-family:var(--font-body)}
+.g-btn:active{transform:scale(.96)}
+.g-btn-primary{background:linear-gradient(135deg,var(--g-primary),#c0392b);color:#fff;box-shadow:0 4px 16px var(--g-primary-glow)}
+.g-btn-secondary{background:var(--g-card);color:var(--text);border:1px solid rgba(255,255,255,.1)}
+.g-btn-accent{background:linear-gradient(135deg,var(--g-accent),#ff8f00);color:#000}
+.g-btn-success{background:linear-gradient(135deg,var(--g-success),#2e7d32);color:#fff}
+.g-btn-block{width:100%;display:block}
+.g-btn-sm{padding:8px 14px;font-size:12px;border-radius:9px}
+
+/* Game Menu */
+#g-menu{justify-content:center;align-items:center;padding:18px;gap:14px;background:radial-gradient(ellipse at 50% 30%,#1a1a3e 0%,var(--g-bg) 70%)}
+.gm-logo{font-family:var(--font-display);font-size:32px;font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g-primary),var(--g-accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:2px}
+.gm-sub{text-align:center;color:var(--text-dim);font-size:12px;margin-bottom:16px}
+.gm-currency{display:flex;justify-content:center;gap:16px;margin-bottom:16px}
+.gm-currency .cur{background:var(--g-surface);padding:6px 14px;border-radius:10px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px}
+.gm-streak{background:var(--g-surface);padding:6px 12px;border-radius:10px;text-align:center;font-size:12px;display:flex;align-items:center;gap:5px;justify-content:center}
+.gm-btns{display:flex;flex-direction:column;gap:8px;width:100%;max-width:260px;margin-top:14px}
+.gm-bottom{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;justify-content:center}
+.gm-bottom .g-btn{flex:0 0 auto;padding:10px 12px;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px}
+.gm-bottom .g-btn .gm-icon{font-size:18px}
+
+/* Mode Select */
+.g-mode-grid{display:flex;flex-direction:column;gap:8px;padding:14px}
+.g-mode-card{background:var(--g-card);border-radius:14px;padding:16px;cursor:pointer;transition:transform .15s,border-color .2s;border:2px solid transparent;display:flex;align-items:center;gap:12px}
+.g-mode-card:active{transform:scale(.97)}
+.g-mode-card:hover{border-color:var(--g-primary)}
+.g-mode-card .mc-icon{font-size:28px;width:44px;text-align:center}
+.g-mode-card .mc-info{flex:1}
+.g-mode-card .mc-info h3{font-size:14px;margin-bottom:1px;font-family:var(--font-display)}
+.g-mode-card .mc-info p{font-size:11px;color:var(--text-dim)}
+.g-mode-card .mc-arrow{color:var(--text-dim);font-size:16px}
+
+/* Game HUD */
+.g-hud{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:var(--g-surface)}
+.g-hud .score-area{text-align:center}
+.g-hud .score-area .label{font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}
+.g-hud .score-area .value{font-size:20px;font-weight:800;font-family:var(--font-display)}
+.g-hud-btn{width:34px;height:34px;border-radius:9px;border:none;background:var(--g-card);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.g-game-info{display:flex;justify-content:space-around;padding:6px 14px;gap:6px}
+.g-game-info .gi-item{text-align:center;font-size:11px;color:var(--text-dim);flex:1;background:var(--g-surface);padding:5px 3px;border-radius:7px}
+.g-game-info .gi-item .gi-val{font-size:14px;font-weight:700;color:var(--text);font-family:var(--font-display)}
+.g-game-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 14px;gap:12px}
+
+/* Grid */
+.g-grid-wrap{background:var(--g-grid-bg);border-radius:12px;padding:7px;box-shadow:0 4px 24px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.05)}
+.g-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.g-cell{width:54px;height:54px;border-radius:9px;background:var(--g-cell-bg);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;position:relative;transition:background .15s}
+.g-cell.hl{background:rgba(233,69,96,.2);box-shadow:inset 0 0 0 2px var(--g-primary)}
+.g-cell .blk{width:100%;height:100%;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;position:absolute;inset:0}
+.g-cell .blk.pop{animation:g-pop .35s ease}
+.g-cell .blk.merge-in{animation:g-mergeIn .3s ease}
+@keyframes g-pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes g-mergeIn{0%{transform:scale(0);opacity:0}50%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+
+/* Queue */
+.g-queue-area{display:flex;gap:10px;align-items:center;justify-content:center}
+.g-queue-block{width:52px;height:52px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;cursor:grab;transition:transform .15s;box-shadow:0 3px 10px rgba(0,0,0,.3)}
+.g-queue-block:active{cursor:grabbing;transform:scale(1.06)}
+.g-queue-block.empty{background:var(--g-card);opacity:.3;pointer-events:none}
+
+/* Powerups */
+.g-pu-bar{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.g-pu-btn{background:var(--g-card);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px 10px;color:var(--text);font-size:11px;cursor:pointer;display:flex;align-items:center;gap:3px;transition:transform .15s;font-family:var(--font-ui)}
+.g-pu-btn:active{transform:scale(.94)}
+.g-pu-btn .cost{color:var(--g-coin);font-size:10px}
+.g-pu-btn.disabled{opacity:.4;pointer-events:none}
+
+/* Timer */
+.g-timer-bar{width:100%;height:5px;background:var(--g-card);border-radius:3px;overflow:hidden;margin:0 14px}
+.g-timer-fill{height:100%;background:linear-gradient(90deg,var(--g-danger),var(--g-accent));border-radius:3px;transition:width .5s linear}
+
+/* Ghost drag block */
+.g-ghost{position:fixed;pointer-events:none;z-index:2000;width:54px;height:54px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;opacity:.88;box-shadow:0 6px 24px rgba(0,0,0,.5)}
+
+/* Score popup */
+.g-score-popup{position:absolute;font-size:14px;font-weight:800;color:var(--g-accent);pointer-events:none;animation:g-floatUp .8s ease forwards;z-index:100}
+@keyframes g-floatUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-40px) scale(1.2)}}
+
+/* Combo text */
+.g-combo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--font-display);font-size:28px;font-weight:900;pointer-events:none;z-index:200;animation:g-comboAnim .7s ease forwards}
+@keyframes g-comboAnim{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.4) translateY(-20px)}}
+
+/* Modal */
+.g-modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:500;backdrop-filter:blur(5px)}
+.g-modal-overlay.active{display:flex}
+.g-modal{background:var(--g-surface);border-radius:18px;padding:26px 20px;width:88%;max-width:300px;text-align:center;border:1px solid rgba(255,255,255,.05);animation:g-modalIn .3s ease}
+@keyframes g-modalIn{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
+.g-modal h2{font-size:20px;font-family:var(--font-display);margin-bottom:4px}
+.g-modal .final-score{font-size:40px;font-weight:900;font-family:var(--font-display);background:linear-gradient(135deg,var(--g-accent),var(--g-primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:10px 0}
+.g-modal .rewards{display:flex;justify-content:center;gap:14px;margin:12px 0;font-size:13px;font-weight:600}
+.g-modal .rewards span{display:flex;align-items:center;gap:3px}
+.g-modal .m-btns{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+
+/* Shop */
+.g-shop-section h3{font-size:13px;color:var(--text-dim);margin:14px 0 8px;text-transform:uppercase;letter-spacing:1px;font-family:var(--font-display)}
+.g-shop-item{background:var(--g-card);border-radius:12px;padding:12px;margin-bottom:6px;display:flex;align-items:center;gap:10px;border:2px solid transparent;transition:border-color .2s}
+.g-shop-item.owned{border-color:var(--g-success)}
+.g-shop-item.equipped{border-color:var(--g-primary);background:rgba(233,69,96,.06)}
+.g-shop-item .si-preview{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.g-shop-item .si-details{flex:1}
+.g-shop-item .si-details h4{font-size:13px;margin-bottom:1px}
+.g-shop-item .si-details p{font-size:10px;color:var(--text-dim)}
+
+/* Achievements */
+.g-achievement{background:var(--g-card);border-radius:12px;padding:12px;margin-bottom:6px;display:flex;align-items:center;gap:10px;opacity:.5;transition:opacity .2s}
+.g-achievement.unlocked{opacity:1}
+.g-achievement .ach-icon{width:40px;height:40px;border-radius:10px;background:var(--g-surface);display:flex;align-items:center;justify-content:center;font-size:20px}
+.g-achievement.unlocked .ach-icon{background:linear-gradient(135deg,var(--g-primary),var(--purple))}
+.g-achievement .ach-info{flex:1}
+.g-achievement .ach-info h4{font-size:13px;margin-bottom:1px}
+.g-achievement .ach-info p{font-size:10px;color:var(--text-dim)}
+
+/* Stats */
+.g-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:14px 0}
+.g-stat-card{background:var(--g-card);border-radius:12px;padding:14px;text-align:center}
+.g-stat-card .sv{font-size:20px;font-weight:800;margin-bottom:2px;font-family:var(--font-display)}
+.g-stat-card .sl{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px}
+.g-stat-card:nth-child(1) .sv{color:var(--g-accent)}
+.g-stat-card:nth-child(2) .sv{color:var(--g-primary)}
+.g-stat-card:nth-child(3) .sv{color:var(--g-success)}
+.g-stat-card:nth-child(4) .sv{color:var(--g-gem)}
+
+/* Settings */
+.g-setting{background:var(--g-card);border-radius:12px;padding:12px 14px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
+.g-setting .sl{font-size:13px;display:flex;align-items:center;gap:6px}
+.g-toggle{width:44px;height:24px;border-radius:12px;background:var(--g-surface);border:none;cursor:pointer;position:relative;transition:background .2s}
+.g-toggle.on{background:var(--g-primary)}
+.g-toggle::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.g-toggle.on::after{transform:translateX(20px)}
+
+/* Leaderboard */
+.g-lb-entry{background:var(--g-card);border-radius:10px;padding:10px 12px;margin-bottom:5px;display:flex;align-items:center;gap:10px}
+.g-lb-entry.me{border:2px solid var(--g-primary);background:rgba(233,69,96,.06)}
+.g-lb-rank{width:26px;font-size:14px;font-weight:800;text-align:center;font-family:var(--font-display)}
+.g-lb-rank.gold{color:#ffd700}
+.g-lb-rank.silver{color:#c0c0c0}
+.g-lb-rank.bronze{color:#cd7f32}
+.g-lb-name{flex:1;font-size:13px;font-weight:600}
+.g-lb-score{font-size:13px;font-weight:700;color:var(--g-accent);font-family:var(--font-display)}
+
+/* Profile */
+.g-profile-header{text-align:center;padding:20px 0}
+.g-profile-avatar{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--g-primary),var(--purple));display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 10px}
+.g-profile-name{font-size:18px;font-weight:700;font-family:var(--font-display)}
+.g-profile-level{font-size:12px;color:var(--text-dim);margin-top:3px}
+.g-profile-xp{width:50%;margin:6px auto 0;height:5px;background:var(--g-card);border-radius:3px;overflow:hidden}
+.g-profile-xp .fill{height:100%;background:linear-gradient(90deg,var(--g-primary),var(--g-accent));border-radius:3px}
+
+/* Daily */
+.g-daily-banner{background:linear-gradient(135deg,var(--purple),var(--g-primary));border-radius:14px;padding:18px;text-align:center;margin:14px 0}
+.g-daily-banner h3{font-size:16px;font-family:var(--font-display);margin-bottom:3px}
+.g-daily-banner p{font-size:12px;opacity:.8}
+.g-daily-banner .streak-info{margin-top:10px;font-size:22px;font-weight:800;font-family:var(--font-display)}
+.g-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin:14px 0}
+.g-cal-day{aspect-ratio:1;border-radius:6px;background:var(--g-card);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-dim)}
+.g-cal-day.completed{background:var(--g-success);color:#fff}
+.g-cal-day.today{border:2px solid var(--g-primary);color:var(--text)}
+
+/* Level indicator */
+.g-level-ind{text-align:center;padding:5px;font-size:12px;color:var(--text-dim);background:var(--g-surface)}
+.g-level-ind span{color:var(--g-accent);font-weight:700;font-family:var(--font-display)}
+
+/* Toast */
+.g-toast{position:absolute;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--g-card);color:var(--text);padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.4);transition:transform .3s ease;display:flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.1);font-family:var(--font-ui);white-space:nowrap;max-width:90%}
+.g-toast.show{transform:translateX(-50%) translateY(0)}
+
+/* Block colors */
+.b2{background:linear-gradient(135deg,#4fc3f7,#039be5);color:#000}
+.b4{background:linear-gradient(135deg,#29b6f6,#0277bd);color:#fff}
+.b8{background:linear-gradient(135deg,#66bb6a,#2e7d32);color:#fff}
+.b16{background:linear-gradient(135deg,#fdd835,#f9a825);color:#000}
+.b32{background:linear-gradient(135deg,#ffa726,#e65100);color:#fff}
+.b64{background:linear-gradient(135deg,#ef5350,#b71c1c);color:#fff}
+.b128{background:linear-gradient(135deg,#ab47bc,#6a1b9a);color:#fff}
+.b256{background:linear-gradient(135deg,#ec407a,#880e4f);color:#fff}
+.b512{background:linear-gradient(135deg,#26c6da,#00695c);color:#fff}
+.b1024{background:linear-gradient(135deg,#ffca28,#ff6f00);color:#000;font-size:13px!important}
+.b2048{background:linear-gradient(135deg,#ff7043,#d32f2f);color:#fff;font-size:13px!important;box-shadow:0 0 16px rgba(255,112,67,.4)}
+.b4096{background:linear-gradient(135deg,#7e57c2,#311b92);color:#fff;font-size:12px!important;box-shadow:0 0 16px rgba(126,87,194,.4)}
+.b8192{background:linear-gradient(135deg,#26a69a,#004d40);color:#fff;font-size:12px!important;box-shadow:0 0 16px rgba(38,166,154,.4)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+ .hero-inner{grid-template-columns:1fr;text-align:center;gap:40px}
+ .hero-content{align-items:center}
+ .hero-subtitle{margin:0 auto}
+ .hero-buttons{justify-content:center}
+ .hero-stats-row{justify-content:center}
+ .hero-visual{order:-1}
+ .hero-icon-wrap{width:200px;height:200px;font-size:80px;border-radius:30px}
+ .hero-icon-wrap svg{width:140px;height:140px}
+ .floating-badge.b1{right:-10px;top:0}
+ .floating-badge.b2{left:-10px}
+ .floating-badge.b3{right:-10px}
+}
+@media(max-width:640px){
+ .nav-links{display:none}
+ .mobile-toggle{display:block}
+ .hero{padding:100px 16px 60px}
+ .section{padding:60px 16px}
+ .features-grid{grid-template-columns:1fr}
+ .modes-grid{grid-template-columns:1fr 1fr}
+ .g-cell{width:48px;height:48px;font-size:14px}
+ .g-queue-block{width:46px;height:46px;font-size:14px}
+ .g-ghost{width:48px;height:48px;font-size:14px}
+}
+@media(max-width:380px){
+ .g-cell{width:42px;height:42px;font-size:13px}
+ .g-queue-block{width:40px;height:40px;font-size:13px}
+ .g-ghost{width:42px;height:42px;font-size:13px}
+ .g-grid{gap:3px}
+ .modes-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+ <div class="nav-brand" onclick="location.href='../index.html'">
+  <div class="icon">🧩</div>
+  <div>
+   <div class="text">BLOCK FUSION</div>
+   <div class="sub">BY APPS STUDIO AM</div>
+  </div>
+ </div>
+ <div class="nav-links">
+  <a href="../index.html">Home</a>
+  <a href="#features">Features</a>
+  <a href="#modes">Modes</a>
+  <a href="#play-now" class="btn-play">▶ Play Now</a>
+ </div>
+ <button class="mobile-toggle" id="mobToggle" onclick="this.classList.toggle('open')">
+  <i class="fas fa-bars"></i>
+ </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+ <div class="hero-inner">
+  <div class="hero-content">
+   <div class="hero-badge"><span class="dot"></span>Puzzle Game</div>
+   <h1 class="hero-title">
+    <span class="highlight">BLOCK</span> FUSION
+   </h1>
+   <p class="hero-subtitle">
+    Drag, drop & fuse matching blocks to score big. Merge blocks to reach higher numbers and chain reactions. 
+    5 game modes, daily challenges, achievements & leaderboards — all wrapped in a beautiful dark-themed design.
+   </p>
+   <div class="hero-buttons">
+    <a href="#play-now" class="btn btn-primary">
+     <i class="fas fa-play"></i>
+     <span>Play Now</span>
+     <div class="btn-shine"></div>
+    </a>
+    <a href="#" class="btn btn-secondary">
+     <i class="fab fa-google-play"></i>
+     <span>Download</span>
+    </a>
+    <a href="../index.html" class="btn btn-outline">
+     <i class="fas fa-arrow-left"></i>
+     <span>All Games</span>
+    </a>
+   </div>
+   <div class="hero-stats-row">
+    <div class="hero-stat"><div class="val">4.7★</div><div class="lbl">Rating</div></div>
+    <div class="hero-stat"><div class="val">10K+</div><div class="lbl">Downloads</div></div>
+    <div class="hero-stat"><div class="val">500+</div><div class="lbl">Levels</div></div>
+    <div class="hero-stat"><div class="val">5</div><div class="lbl">Modes</div></div>
+   </div>
+  </div>
+  <div class="hero-visual">
+   <div class="hero-icon-wrap" id="heroIcon"></div>
+   <div class="floating-badge b1">⭐ 4.7 Rating</div>
+   <div class="floating-badge b2">🔥 Daily Challenges</div>
+   <div class="floating-badge b3">🏆 Leaderboards</div>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STATS BANNER
+     ═══════════════════════════════════════════ -->
+<div class="stats-banner">
+ <div class="stats-row reveal">
+  <div class="stat-block"><span class="s-icon">🧩</span><div class="s-val">500+</div><div class="s-lbl">Puzzle Levels</div></div>
+  <div class="stat-block"><span class="s-icon">🕹️</span><div class="s-val">5</div><div class="s-lbl">Game Modes</div></div>
+  <div class="stat-block"><span class="s-icon">🏆</span><div class="s-val">18</div><div class="s-lbl">Achievements</div></div>
+  <div class="stat-block"><span class="s-icon">🎨</span><div class="s-val">8</div><div class="s-lbl">Themes</div></div>
+  <div class="stat-block"><span class="s-icon">⚡</span><div class="s-val">4</div><div class="s-lbl">Power-ups</div></div>
+ </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CORE GAMEPLAY FEATURES
+     ═══════════════════════════════════════════ -->
+<section class="section" id="features">
+ <div class="section-header reveal">
+  <div class="section-tag"><i class="fas fa-gamepad"></i> Core Gameplay</div>
+  <h2 class="section-title">How to <span>Play</span></h2>
+  <p class="section-desc">Simple to learn, impossible to put down. Drag blocks, fuse matches, and chase your highest score.</p>
+ </div>
+ <div class="features-grid reveal">
+  <div class="feature-card">
+   <div class="f-icon">🧩</div>
+   <h3>Drag, Drop & Fuse</h3>
+   <p>Drag blocks from your queue and drop them on the grid. When matching numbers touch, they fuse into higher values with satisfying animations.</p>
+   <div class="f-num">01</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">🔢</div>
+   <h3>Merge to Score Big</h3>
+   <p>Merge blocks to reach higher numbers and unlock massive combos. Strategic placement creates explosive chain reactions for huge point multipliers.</p>
+   <div class="f-num">02</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">🎯</div>
+   <h3>Strategic Chain Reactions</h3>
+   <p>Plan your moves carefully. When a merge creates another adjacent match, chains fire off automatically with increasing multipliers and visual effects.</p>
+   <div class="f-num">03</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">📐</div>
+   <h3>Clean Grid Mechanics</h3>
+   <p>A satisfying 5×5 grid with clean visuals and intuitive controls. Every cell, every block, every merge feels precise and responsive.</p>
+   <div class="f-num">04</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">🖐️</div>
+   <h3>One-Hand Portrait Play</h3>
+   <p>Designed for comfortable one-handed gameplay in portrait mode. Play on the go — commute, break time, bed time — anywhere, anytime.</p>
+   <div class="f-num">05</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">⚡</div>
+   <h3>4 Power-ups</h3>
+   <p>Use Bomb to remove blocks, Shuffle to refresh your queue, Upgrade to boost a block, or Undo to reverse a mistake — all earnable through gameplay.</p>
+   <div class="f-num">06</div>
+  </div>
+ </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     GAME MODES
+     ═══════════════════════════════════════════ -->
+<section class="section" id="modes">
+ <div class="section-header reveal">
+  <div class="section-tag"><i class="fas fa-layer-group"></i> Game Modes</div>
+  <h2 class="section-title">5 Ways to <span>Play</span></h2>
+  <p class="section-desc">Whether you want intense time pressure or zen relaxation, there's a mode for every mood.</p>
+ </div>
+ <div class="modes-grid reveal">
+  <div class="mode-card">
+   <span class="m-emoji">▶️</span>
+   <h4>Classic Mode</h4>
+   <p>Progress through increasingly challenging levels. Each level has a target score. Clear it to unlock the next world.</p>
+  </div>
+  <div class="mode-card">
+   <span class="m-emoji">♾️</span>
+   <h4>Endless Mode</h4>
+   <p>No limits, no targets. Play until the board fills up. Push your score to the absolute maximum and chase your personal best.</p>
+  </div>
+  <div class="mode-card">
+   <span class="m-emoji">⏱️</span>
+   <h4>Time Attack</h4>
+   <p>90 seconds on the clock. Race against time for the maximum score. Think fast, fuse faster — every second counts.</p>
+  </div>
+  <div class="mode-card">
+   <span class="m-emoji">🧘</span>
+   <h4>Zen Mode</h4>
+   <p>No pressure, no timer, no game over. Pure relaxation. The board auto-clears when full so you can play forever.</p>
+  </div>
+  <div class="mode-card">
+   <span class="m-emoji">📅</span>
+   <h4>Daily Challenge</h4>
+   <p>A new seeded puzzle every day. Build your streak for bonus rewards. Compare scores with the community. Don't break the chain!</p>
+  </div>
+ </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     PROGRESSION & REWARDS
+     ═══════════════════════════════════════════ -->
+<section class="section">
+ <div class="section-header reveal">
+  <div class="section-tag"><i class="fas fa-trophy"></i> Progression & Rewards</div>
+  <h2 class="section-title">Earn, Unlock & <span>Progress</span></h2>
+  <p class="section-desc">Every game earns you rewards. Build streaks, unlock themes, and climb the leaderboard.</p>
+ </div>
+ <div class="feature-list reveal">
+  <div class="feature-list-item">
+   <div class="fl-icon">🪙</div>
+   <div class="fl-text"><h4>Earn Coins</h4><p>Every game rewards coins based on your score. Use them in the shop for power-ups and themes.</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">💎</div>
+   <div class="fl-text"><h4>Collect Gems</h4><p>Premium currency earned through high scores and achievements. Convert coins to gems in the shop.</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">🔥</div>
+   <div class="fl-text"><h4>Daily Streaks</h4><p>Play every day to build your streak. Each day increases your bonus rewards. Don't break the chain!</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">⭐</div>
+   <div class="fl-text"><h4>500+ Levels</h4><p>Unlock hundreds of levels across multiple worlds in Classic mode. Each world brings new challenges.</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">📈</div>
+   <div class="fl-text"><h4>Personal Statistics</h4><p>Track everything — games played, total score, best chain, highest block, time played, and more.</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">🎖️</div>
+   <div class="fl-text"><h4>XP & Player Level</h4><p>Earn experience from every game. Level up your profile and show off your dedication.</p></div>
+  </div>
+ </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     SHOP & CUSTOMIZATION
+     ═══════════════════════════════════════════ -->
+<section class="section">
+ <div class="section-header reveal">
+  <div class="section-tag"><i class="fas fa-store"></i> Shop & Customization</div>
+  <h2 class="section-title">Make It <span>Yours</span></h2>
+  <p class="section-desc">Customize your experience with themes, power-ups, and more — all earnable through gameplay. No paywall.</p>
+ </div>
+ <div class="features-grid reveal">
+  <div class="feature-card">
+   <div class="f-icon">🎨</div>
+   <h3>8 Unique Themes</h3>
+   <p>Midnight Dark, Ocean Blue, Forest Green, Sunset Glow, Purple Night, Minimalist, Neon Cyber, Rose Gold — unlock them all.</p>
+   <div class="f-num">🎨</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">🧰</div>
+   <h3>Power-ups & Boosters</h3>
+   <p>💣 Bomb, 🔄 Shuffle, ⬆️ Upgrade, ↩️ Undo — purchase with earned coins to gain strategic advantages.</p>
+   <div class="f-num">🧰</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">💰</div>
+   <h3>No Paywall</h3>
+   <p>Everything is earnable through gameplay. Coins and gems economy lets you unlock all content by playing. Fair and fun.</p>
+   <div class="f-num">💰</div>
+  </div>
+ </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     COMPETITIVE FEATURES
+     ═══════════════════════════════════════════ -->
+<section class="section">
+ <div class="section-header reveal">
+  <div class="section-tag"><i class="fas fa-medal"></i> Competitive Features</div>
+  <h2 class="section-title">Compete & <span>Conquer</span></h2>
+  <p class="section-desc">Track your progress, earn achievements, and compete with players worldwide.</p>
+ </div>
+ <div class="features-grid reveal">
+  <div class="feature-card">
+   <div class="f-icon">🏆</div>
+   <h3>18 Achievements</h3>
+   <p>Unlock milestones like First Fusion, Score Legend, Chain Master, Block Fusion Master, and many more. Collect all badges!</p>
+   <div class="f-num">🏆</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">🥇</div>
+   <h3>Global Leaderboards</h3>
+   <p>Compete with players worldwide. See your rank, climb the ladder, and aim for the #1 spot on the global leaderboard.</p>
+   <div class="f-num">🥇</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">👤</div>
+   <h3>Player Profiles</h3>
+   <p>Your personal gaming identity with XP level, stats, achievements, wallet, collection progress, and play history.</p>
+   <div class="f-num">👤</div>
+  </div>
+  <div class="feature-card">
+   <div class="f-icon">📊</div>
+   <h3>Detailed Statistics</h3>
+   <p>12 stat categories: Best Score, Games Played, Total Merges, Highest Block, Best Chain, Total Moves, Time Played, and more.</p>
+   <div class="f-num">📊</div>
+  </div>
+ </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     DESIGN & EXPERIENCE
+     ═══════════════════════════════════════════ -->
+<section class="section">
+ <div class="section-header reveal">
+  <div class="section-tag"><i class="fas fa-paint-brush"></i> Design & Experience</div>
+  <h2 class="section-title">Beautiful & <span>Polished</span></h2>
+  <p class="section-desc">Every pixel, every animation, every sound — crafted for a premium gaming experience.</p>
+ </div>
+ <div class="feature-list reveal">
+  <div class="feature-list-item">
+   <div class="fl-icon">🌙</div>
+   <div class="fl-text"><h4>Dark-Themed UI</h4><p>Beautiful dark design that's easy on the eyes, perfect for day or night gaming sessions.</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">✨</div>
+   <div class="fl-text"><h4>Smooth Animations</h4><p>Satisfying pop, merge, chain, and combo animations. Every fusion feels rewarding and juicy.</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">📳</div>
+   <div class="fl-text"><h4>Haptic Feedback</h4><p>Feel every block placement and fusion with precise vibration feedback. Fully customizable.</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">🎵</div>
+   <div class="fl-text"><h4>Sound & Music</h4><p>Web Audio API-powered sound effects with ambient background music. Relaxing and immersive.</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">🔊</div>
+   <div class="fl-text"><h4>Customizable Settings</h4><p>Toggle sound, music, and vibration independently. Make the game exactly how you like it.</p></div>
+  </div>
+  <div class="feature-list-item">
+   <div class="fl-icon">🖥️</div>
+   <div class="fl-text"><h4>Hardware Accelerated</h4><p>GPU-accelerated CSS transforms and animations for buttery smooth 60fps rendering on all devices.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PLAY NOW SECTION
+     ═══════════════════════════════════════════ -->
+<section class="play-section" id="play-now">
+ <div class="section-header reveal">
+  <div class="section-tag"><i class="fas fa-play-circle"></i> Play Now</div>
+  <h2 class="section-title">Try <span>Block Fusion</span></h2>
+  <p class="section-desc">Experience the full game right here in your browser. All features included!</p>
+ </div>
+
+ <div class="game-container reveal" id="gameContainer">
+  <div class="game-container-badge">▶ PLAYABLE DEMO</div>
+
+  <!-- ====== GAME APP ====== -->
+  <div id="game-app">
+   <div class="g-toast" id="g-toast"></div>
+
+   <!-- GAME MENU -->
+   <div class="g-screen active" id="g-menu">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:18px">
+     <div class="gm-logo">BLOCK FUSION</div>
+     <div class="gm-sub">Drag • Drop • Fuse</div>
+     <div class="gm-currency">
+      <div class="cur">🪙 <span id="gm-coins">0</span></div>
+      <div class="cur">💎 <span id="gm-gems">0</span></div>
+     </div>
+     <div class="gm-streak">🔥 <span id="gm-streak">0</span> Day Streak</div>
+     <div class="gm-btns">
+      <button class="g-btn g-btn-primary g-btn-block" onclick="G.showScreen('g-mode-select')">▶️ PLAY</button>
+      <button class="g-btn g-btn-accent g-btn-block" onclick="G.startGame('daily')">📅 Daily Challenge</button>
+     </div>
+     <div class="gm-bottom">
+      <button class="g-btn g-btn-secondary" onclick="G.showScreen('g-shop')"><span class="gm-icon">🛒</span>Shop</button>
+      <button class="g-btn g-btn-secondary" onclick="G.showScreen('g-stats')"><span class="gm-icon">📊</span>Stats</button>
+      <button class="g-btn g-btn-secondary" onclick="G.showScreen('g-ach')"><span class="gm-icon">🏆</span>Awards</button>
+      <button class="g-btn g-btn-secondary" onclick="G.showScreen('g-settings')"><span class="gm-icon">⚙️</span>Settings</button>
+     </div>
+     <div style="margin-top:10px;display:flex;gap:6px">
+      <button class="g-btn g-btn-secondary g-btn-sm" onclick="G.showScreen('g-lb')">🥇 Leaderboard</button>
+      <button class="g-btn g-btn-secondary g-btn-sm" onclick="G.showScreen('g-profile')">👤 Profile</button>
+     </div>
+    </div>
+   </div>
+
+   <!-- MODE SELECT -->
+   <div class="g-screen" id="g-mode-select">
+    <div class="g-header">
+     <button class="g-btn-back" onclick="G.showScreen('g-menu')">←</button>
+     <h2>Select Mode</h2>
+    </div>
+    <div class="g-screen-scroll">
+     <div class="g-mode-grid">
+      <div class="g-mode-card" onclick="G.startGame('classic')"><div class="mc-icon">▶️</div><div class="mc-info"><h3>Classic Mode</h3><p>Progress through challenging levels</p></div><div class="mc-arrow">›</div></div>
+      <div class="g-mode-card" onclick="G.startGame('endless')"><div class="mc-icon">♾️</div><div class="mc-info"><h3>Endless Mode</h3><p>Play until the board fills up</p></div><div class="mc-arrow">›</div></div>
+      <div class="g-mode-card" onclick="G.startGame('timeattack')"><div class="mc-icon">⏱️</div><div class="mc-info"><h3>Time Attack</h3><p>Race against the clock — 90 seconds</p></div><div class="mc-arrow">›</div></div>
+      <div class="g-mode-card" onclick="G.startGame('zen')"><div class="mc-icon">🧘</div><div class="mc-info"><h3>Zen Mode</h3><p>No pressure, pure relaxation</p></div><div class="mc-arrow">›</div></div>
+     </div>
+    </div>
+   </div>
+
+   <!-- GAME SCREEN -->
+   <div class="g-screen" id="g-game-screen">
+    <div class="g-hud">
+     <button class="g-hud-btn" onclick="G.pauseGame()">⏸</button>
+     <div class="score-area"><div class="label" id="g-mode-label">SCORE</div><div class="value" id="g-score-display">0</div></div>
+     <div class="g-currency-bar"><span>🪙<span id="g-game-coins">0</span></span></div>
+    </div>
+    <div id="g-timer-container" style="display:none;padding:3px 14px"><div class="g-timer-bar"><div class="g-timer-fill" id="g-timer-fill"></div></div></div>
+    <div id="g-level-ind" class="g-level-ind" style="display:none">Level <span id="g-level-num">1</span> — Target: <span id="g-level-target">0</span></div>
+    <div class="g-game-info">
+     <div class="gi-item"><div class="gi-val" id="g-best-display">0</div>Best</div>
+     <div class="gi-item"><div class="gi-val" id="g-moves-display">0</div>Moves</div>
+     <div class="gi-item"><div class="gi-val" id="g-chain-display">0</div>Best Chain</div>
+    </div>
+    <div class="g-game-area">
+     <div class="g-grid-wrap"><div class="g-grid" id="g-grid"></div></div>
+     <div class="g-queue-area" id="g-queue"></div>
+     <div class="g-pu-bar" id="g-powerups">
+      <button class="g-pu-btn" onclick="G.usePowerup('bomb')" id="g-pu-bomb">💣 <span class="cost">100</span></button>
+      <button class="g-pu-btn" onclick="G.usePowerup('shuffle')" id="g-pu-shuffle">🔄 <span class="cost">50</span></button>
+      <button class="g-pu-btn" onclick="G.usePowerup('upgrade')" id="g-pu-upgrade">⬆️ <span class="cost">200</span></button>
+      <button class="g-pu-btn" onclick="G.usePowerup('undo')" id="g-pu-undo">↩️ <span class="cost">150</span></button>
+     </div>
+    </div>
+   </div>
+
+   <!-- PAUSE MODAL -->
+   <div class="g-modal-overlay" id="g-pause-modal">
+    <div class="g-modal">
+     <h2>⏸ Paused</h2>
+     <div class="m-btns"><button class="g-btn g-btn-primary g-btn-block" onclick="G.resumeGame()">▶️ Resume</button><button class="g-btn g-btn-secondary g-btn-block" onclick="G.restartGame()">🔄 Restart</button><button class="g-btn g-btn-secondary g-btn-block" onclick="G.quitGame()">🚪 Quit</button></div>
+    </div>
+   </div>
+
+   <!-- GAME OVER MODAL -->
+   <div class="g-modal-overlay" id="g-gameover-modal">
+    <div class="g-modal">
+     <h2 id="g-go-title">Game Over!</h2>
+     <div class="final-score" id="g-go-score">0</div>
+     <p style="color:var(--text-dim);font-size:12px" id="g-go-best">Best: 0</p>
+     <div class="rewards" id="g-go-rewards"><span>🪙 +<span id="g-go-coins">0</span></span><span>💎 +<span id="g-go-gems">0</span></span></div>
+     <div class="m-btns"><button class="g-btn g-btn-primary g-btn-block" onclick="G.restartGame()">🔄 Play Again</button><button class="g-btn g-btn-secondary g-btn-block" onclick="G.quitGame()">🏠 Menu</button></div>
+    </div>
+   </div>
+
+   <!-- SHOP -->
+   <div class="g-screen" id="g-shop">
+    <div class="g-header"><button class="g-btn-back" onclick="G.showScreen('g-menu')">←</button><h2>Shop</h2><div class="g-currency-bar"><span>🪙<span id="g-shop-coins">0</span></span><span>💎<span id="g-shop-gems">0</span></span></div></div>
+    <div class="g-screen-scroll" id="g-shop-content"></div>
+   </div>
+
+   <!-- ACHIEVEMENTS -->
+   <div class="g-screen" id="g-ach">
+    <div class="g-header"><button class="g-btn-back" onclick="G.showScreen('g-menu')">←</button><h2>Achievements</h2></div>
+    <div class="g-screen-scroll" id="g-ach-content"></div>
+   </div>
+
+   <!-- STATS -->
+   <div class="g-screen" id="g-stats">
+    <div class="g-header"><button class="g-btn-back" onclick="G.showScreen('g-menu')">←</button><h2>Statistics</h2></div>
+    <div class="g-screen-scroll" id="g-stats-content"></div>
+   </div>
+
+   <!-- SETTINGS -->
+   <div class="g-screen" id="g-settings">
+    <div class="g-header"><button class="g-btn-back" onclick="G.showScreen('g-menu')">←</button><h2>Settings</h2></div>
+    <div class="g-screen-scroll" id="g-settings-content"></div>
+   </div>
+
+   <!-- LEADERBOARD -->
+   <div class="g-screen" id="g-lb">
+    <div class="g-header"><button class="g-btn-back" onclick="G.showScreen('g-menu')">←</button><h2>Leaderboard</h2></div>
+    <div class="g-screen-scroll" id="g-lb-content"></div>
+   </div>
+
+   <!-- PROFILE -->
+   <div class="g-screen" id="g-profile">
+    <div class="g-header"><button class="g-btn-back" onclick="G.showScreen('g-menu')">←</button><h2>Profile</h2></div>
+    <div class="g-screen-scroll" id="g-profile-content"></div>
+   </div>
+
+   <!-- DAILY -->
+   <div class="g-screen" id="g-daily">
+    <div class="g-header"><button class="g-btn-back" onclick="G.showScreen('g-menu')">←</button><h2>Daily Challenge</h2></div>
+    <div class="g-screen-scroll" id="g-daily-content"></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     DOWNLOAD CTA
+     ═══════════════════════════════════════════ -->
+<section class="cta-section">
+ <div class="cta-inner reveal">
+  <h2>Get <span style="background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Block Fusion</span> on Android</h2>
+  <p>Download the full experience on Google Play. All features, all modes, all the fun — optimized for your Android device.</p>
+  <div class="cta-buttons">
+   <a href="#" class="btn btn-primary"><i class="fab fa-google-play"></i><span>Google Play Store</span><div class="btn-shine"></div></a>
+   <a href="../index.html" class="btn btn-secondary"><i class="fas fa-th"></i><span>See All Games</span></a>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer class="page-footer">
+ <p>&copy; 2025 <a href="../index.html">Apps Studio AM</a>. All rights reserved.</p>
+ <p style="margin-top:6px">Crafted with <i class="fas fa-heart heart"></i> for Gamers Worldwide</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     HERO SVG ICON INJECTION
+     ═══════════════════════════════════════════ -->
+<script>
+// Inject the Block Fusion SVG icon into the hero
+var BLOCK_FUSION_SVG='<svg xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 108 108"><path d="M0,0 L108,0 L108,108 L0,108Z" fill="#0D1B2A"/><path d="M54,10 C78,10 98,30 98,54 C98,78 78,98 54,98 C30,98 10,78 10,54 C10,30 30,10 54,10Z" fill="#0A1929"/><path d="M54,25 C70,25 83,38 83,54 C83,70 70,83 54,83 C38,83 25,70 25,54 C25,38 38,25 54,25Z" fill="#0D2137"/><path d="M54,18 C73.88,18 90,34.12 90,54 C90,73.88 73.88,90 54,90 C34.12,90 18,73.88 18,54 C18,34.12 34.12,18 54,18Z" fill="#FFD700" fill-opacity="0.102"/><path d="M54,22 C71.67,22 86,36.33 86,54 C86,71.67 71.67,86 54,86 C36.33,86 22,71.67 22,54 C22,36.33 36.33,22 54,22Z" fill="#FFD700" fill-opacity="0.2"/><path d="M30,27 L78,27 Q82,27 82,31 L82,79 Q82,83 78,83 L30,83 Q26,83 26,79 L26,31 Q26,27 30,27Z" fill="#1A1A2E"/><path d="M30,27 L78,27 Q82,27 82,31 L82,79 Q82,83 78,83 L30,83 Q26,83 26,79 L26,31 Q26,27 30,27Z" stroke="#FFD700" stroke-opacity="0.2" stroke-width="0.8" fill="none"/><path d="M32,33 L44,33 Q45,33 45,34 L45,46 Q45,47 44,47 L32,47 Q31,47 31,46 L31,34 Q31,33 32,33Z" fill="#00BCD4"/><path d="M48,33 L60,33 Q61,33 61,34 L61,46 Q61,47 60,47 L48,47 Q47,47 47,46 L47,34 Q47,33 48,33Z" fill="#FFD700"/><path d="M64,33 L76,33 Q77,33 77,34 L77,46 Q77,47 76,47 L64,47 Q63,47 63,46 L63,34 Q63,33 64,33Z" fill="#9C27B0"/><path d="M32,50 L44,50 Q45,50 45,51 L45,63 Q45,64 44,64 L32,64 Q31,64 31,63 L31,51 Q31,50 32,50Z" fill="#FF9800"/><path d="M48,50 L60,50 Q61,50 61,51 L61,63 Q61,64 60,64 L48,64 Q47,64 47,63 L47,51 Q47,50 48,50Z" fill="#FFFFFF"/><path d="M50,52 L58,52 Q59,52 59,53 L59,61 Q59,62 58,62 L50,62 Q49,62 49,61 L49,53 Q49,52 50,52Z" fill="#FFD700"/><path d="M55.5,53 L52,57.5 L54.5,57.5 L52.5,61 L57,56.5 L54.5,56.5Z" fill="#1A1A2E"/><path d="M64,50 L76,50 Q77,50 77,51 L77,63 Q77,64 76,64 L64,64 Q63,64 63,63 L63,51 Q63,50 64,50Z" fill="#4CAF50"/><path d="M32,67 L44,67 Q45,67 45,68 L45,80 Q45,81 44,81 L32,81 Q31,81 31,80 L31,68 Q31,67 32,67Z" fill="#2196F3"/><path d="M48,67 L60,67 Q61,67 61,68 L61,80 Q61,81 60,81 L48,81 Q47,81 47,80 L47,68 Q47,67 48,67Z" fill="#F44336"/><path d="M64,67 L76,67 Q77,67 77,68 L77,80 Q77,81 76,81 L64,81 Q63,81 63,80 L63,68 Q63,67 64,67Z" fill="#E91E63"/><path d="M24,30 L25,28 L26,30 L28,31 L26,32 L25,34 L24,32 L22,31Z" fill="#FFD700"/><path d="M82,28 L83,26 L84,28 L86,29 L84,30 L83,32 L82,30 L80,29Z" fill="#FFD700"/></svg>';
+document.getElementById('heroIcon').innerHTML=BLOCK_FUSION_SVG.replace('width="108"','width="200"').replace('height="108"','height="200"');
+</script>
+
+<!-- ═══════════════════════════════════════════
+     SCROLL REVEAL
+     ═══════════════════════════════════════════ -->
+<script>
+(function(){
+ const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+ },{threshold:0.1});
+ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════
+     BLOCK FUSION GAME ENGINE
+     ═══════════════════════════════════════════ -->
+<script>
+const G=(function(){
+// ── CONSTANTS ──
+const SZ=5,QS=3;
+const BV=[2,4,8,16,32,64,128,256,512,1024,2048,4096,8192];
+const BC=v=>'b'+v;
+
+// ── THEMES ──
+const THEMES=[
+ {id:'dark',name:'Midnight Dark',icon:'🌙',price:0},
+ {id:'ocean',name:'Ocean Blue',icon:'🌊',price:500},
+ {id:'forest',name:'Forest Green',icon:'🌲',price:500},
+ {id:'sunset',name:'Sunset Glow',icon:'🌅',price:750},
+ {id:'purple',name:'Purple Night',icon:'💜',price:750},
+ {id:'minimal',name:'Minimalist',icon:'⬜',price:1000},
+ {id:'neon',name:'Neon Cyber',icon:'💫',price:1500},
+ {id:'rose',name:'Rose Gold',icon:'🌹',price:1000}
+];
+
+// ── ACHIEVEMENTS ──
+const ACHS=[
+ {id:'first_merge',name:'First Fusion',desc:'Merge your first blocks',icon:'✨',check:s=>s.totalMerges>=1},
+ {id:'score_1k',name:'Score Master',desc:'Reach 1,000 points',icon:'🎯',check:s=>s.bestScore>=1000},
+ {id:'score_10k',name:'Score Legend',desc:'Reach 10,000 points',icon:'🏅',check:s=>s.bestScore>=10000},
+ {id:'score_50k',name:'Score Titan',desc:'Reach 50,000 points',icon:'👑',check:s=>s.bestScore>=50000},
+ {id:'chain_3',name:'Chain Reactor',desc:'Get a 3x chain',icon:'⛓️',check:s=>s.bestChain>=3},
+ {id:'chain_5',name:'Chain Master',desc:'Get a 5x chain',icon:'🔗',check:s=>s.bestChain>=5},
+ {id:'block_128',name:'Big Block',desc:'Create a 128 block',icon:'🧊',check:s=>s.highestBlock>=128},
+ {id:'block_512',name:'Huge Block',desc:'Create a 512 block',icon:'💎',check:s=>s.highestBlock>=512},
+ {id:'block_2048',name:'Fusion Master',desc:'Create a 2048 block',icon:'🌟',check:s=>s.highestBlock>=2048},
+ {id:'games_10',name:'Dedicated Player',desc:'Play 10 games',icon:'🎮',check:s=>s.gamesPlayed>=10},
+ {id:'games_50',name:'Veteran',desc:'Play 50 games',icon:'🎖️',check:s=>s.gamesPlayed>=50},
+ {id:'games_100',name:'Centurion',desc:'Play 100 games',icon:'💯',check:s=>s.gamesPlayed>=100},
+ {id:'streak_3',name:'On Fire',desc:'3-day streak',icon:'🔥',check:s=>s.dailyStreak>=3},
+ {id:'streak_7',name:'Weekly Warrior',desc:'7-day streak',icon:'📅',check:s=>s.dailyStreak>=7},
+ {id:'streak_30',name:'Monthly Master',desc:'30-day streak',icon:'🗓️',check:s=>s.dailyStreak>=30},
+ {id:'coins_5k',name:'Coin Collector',desc:'Earn 5,000 coins',icon:'🪙',check:s=>s.totalCoins>=5000},
+ {id:'moves_500',name:'500 Moves',desc:'Make 500 moves',icon:'🖐️',check:s=>s.totalMoves>=500},
+ {id:'daily_1',name:'Daily Debut',desc:'Complete a daily challenge',icon:'📰',check:s=>s.dailiesCompleted>=1}
+];
+
+const PU={bomb:{cost:100},shuffle:{cost:50},upgrade:{cost:200},undo:{cost:150}};
+const BOT_NAMES=['Alex','Jordan','Taylor','Morgan','Casey','Riley','Quinn','Avery','Dakota','Sage','Phoenix','River','Skyler','Drew','Jamie','Robin','Hayden','Emery','Parker','Blake'];
+
+// ── STATE ──
+let st={coins:500,gems:10,dailyStreak:0,lastPlayDate:'',ownedThemes:['dark'],equippedTheme:'dark',
+ settings:{sound:true,music:true,vibration:true},
+ stats:{gamesPlayed:0,bestScore:0,totalScore:0,totalMerges:0,totalMoves:0,bestChain:0,highestBlock:2,totalCoins:0,dailyStreak:0,dailiesCompleted:0,timePlayedSec:0},
+ achievements:[],classicLevel:1,dailyBestScores:{},leaderboard:[]};
+
+let gm={grid:[],queue:[],score:0,moves:0,bestChain:0,mode:'endless',timer:0,timerInterval:null,level:1,target:0,paused:false,over:false,history:[],selectedPowerup:null,coinsEarned:0,gemsEarned:0,startTime:0};
+
+let ghostEl=null,dragBlock=null,dragIdx=-1;
+
+// ── AUDIO ──
+let actx=null;
+function initA(){if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)()}
+function snd(type){
+ if(!st.settings.sound)return;
+ try{initA();const o=actx.createOscillator(),g=actx.createGain();o.connect(g);g.connect(actx.destination);const t=actx.currentTime;
+  if(type==='place'){o.frequency.setValueAtTime(440,t);o.frequency.exponentialRampToValueAtTime(600,t+.1);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.01,t+.15);o.start(t);o.stop(t+.15)}
+  else if(type==='merge'){o.frequency.setValueAtTime(523,t);o.frequency.exponentialRampToValueAtTime(784,t+.15);g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.01,t+.25);o.start(t);o.stop(t+.25)}
+  else if(type==='chain'){o.frequency.setValueAtTime(659,t);o.frequency.exponentialRampToValueAtTime(1047,t+.2);g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.01,t+.35);o.start(t);o.stop(t+.35)}
+  else if(type==='gameover'){o.type='sawtooth';o.frequency.setValueAtTime(440,t);o.frequency.exponentialRampToValueAtTime(110,t+.5);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.01,t+.6);o.start(t);o.stop(t+.6)}
+  else if(type==='coin'){o.type='triangle';o.frequency.setValueAtTime(880,t);o.frequency.exponentialRampToValueAtTime(1760,t+.08);g.gain.setValueAtTime(.08,t);g.gain.exponentialRampToValueAtTime(.01,t+.12);o.start(t);o.stop(t+.12)}
+  else if(type==='levelup'){o.frequency.setValueAtTime(523,t);o.frequency.setValueAtTime(659,t+.1);o.frequency.setValueAtTime(784,t+.2);g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.01,t+.4);o.start(t);o.stop(t+.4)}
+ }catch(e){}}
+function haptic(ms=10){if(st.settings.vibration&&navigator.vibrate)navigator.vibrate(ms)}
+
+// ── SAVE/LOAD ──
+function save(){localStorage.setItem('bf_save',JSON.stringify(st))}
+function load(){try{const d=localStorage.getItem('bf_save');if(d){const s=JSON.parse(d);Object.keys(st).forEach(k=>{if(s[k]!==undefined){if(typeof st[k]==='object'&&!Array.isArray(st[k])){st[k]={...st[k],...s[k]}}else{st[k]=s[k]}}})}}catch(e){}}
+
+// ── DAILY STREAK ──
+function checkStreak(){
+ const today=new Date().toDateString();if(st.lastPlayDate===today)return;
+ const yesterday=new Date(Date.now()-86400000).toDateString();
+ if(st.lastPlayDate===yesterday){st.dailyStreak++;st.stats.dailyStreak=st.dailyStreak}
+ else{st.dailyStreak=1;st.stats.dailyStreak=Math.max(st.stats.dailyStreak,1)}
+ st.lastPlayDate=today;const r=st.dailyStreak*10;st.coins+=r;st.stats.totalCoins+=r;save();
+ setTimeout(()=>toast(`🔥 Day ${st.dailyStreak} streak! +${r} coins`),300);
+}
+
+// ── SCREENS ──
+function showScreen(id){
+ document.querySelectorAll('#game-app .g-screen').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ if(id==='g-menu')updateMenu();
+ else if(id==='g-shop')renderShop();
+ else if(id==='g-ach')renderAch();
+ else if(id==='g-stats')renderStats();
+ else if(id==='g-settings')renderSettings();
+ else if(id==='g-lb')renderLB();
+ else if(id==='g-profile')renderProfile();
+ else if(id==='g-daily')renderDaily();
+}
+function updateMenu(){
+ document.getElementById('gm-coins').textContent=st.coins;
+ document.getElementById('gm-gems').textContent=st.gems;
+ document.getElementById('gm-streak').textContent=st.dailyStreak;
+}
+function toast(msg,dur=2500){const t=document.getElementById('g-toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur)}
+
+function seededRng(seed){let s=seed;return()=>{s=(s*16807)%2147483647;return(s-1)/2147483646}}
+
+// ── GAME INIT ──
+function startGame(mode){
+ initA();
+ gm={grid:Array.from({length:SZ},()=>Array(SZ).fill(0)),queue:[],score:0,moves:0,bestChain:0,mode,
+  timer:mode==='timeattack'?90:0,timerInterval:null,level:mode==='classic'?st.classicLevel:1,
+  target:mode==='classic'?classicTarget(st.classicLevel):0,paused:false,over:false,history:[],
+  selectedPowerup:null,coinsEarned:0,gemsEarned:0,startTime:Date.now(),rng:null};
+ if(mode==='daily'){const d=new Date();gm.rng=seededRng(d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate())}
+ for(let i=0;i<QS;i++)gm.queue.push(genBlock());
+ showScreen('g-game-screen');
+ document.getElementById('g-mode-label').textContent=({classic:'CLASSIC',endless:'ENDLESS',timeattack:'TIME ATTACK',zen:'ZEN',daily:'DAILY'})[mode]||'SCORE';
+ document.getElementById('g-timer-container').style.display=mode==='timeattack'?'block':'none';
+ document.getElementById('g-level-ind').style.display=mode==='classic'?'block':'none';
+ document.getElementById('g-powerups').style.display=mode==='zen'?'none':'flex';
+ if(mode==='classic'){document.getElementById('g-level-num').textContent=gm.level;document.getElementById('g-level-target').textContent=gm.target}
+ if(mode==='timeattack')startTimer();
+ renderGrid();renderQueue();updateHUD();updatePU();
+}
+function classicTarget(lv){return Math.floor(500*lv*Math.pow(1.4,lv-1))}
+function genBlock(){
+ if(gm.rng){const r=gm.rng(),mx=Math.max(2,...gm.grid.flat().filter(v=>v>0)),mq=Math.max(2,Math.min(mx/2,32)),vs=BV.filter(v=>v<=mq);return vs[Math.floor(r*vs.length)]||2}
+ const mx=Math.max(2,...gm.grid.flat().filter(v=>v>0)),mq=Math.max(2,Math.floor(mx/4)),ps=BV.filter(v=>v<=mq);
+ if(!ps.length)return 2;const w=ps.map((_,i)=>ps.length-i+1),tw=w.reduce((a,b)=>a+b,0);let r=Math.random()*tw;
+ for(let i=0;i<ps.length;i++){r-=w[i];if(r<=0)return ps[i]}return ps[0];
+}
+
+// ── TIMER ──
+function startTimer(){updateTimer();gm.timerInterval=setInterval(()=>{if(gm.paused||gm.over)return;gm.timer--;updateTimer();if(gm.timer<=0){clearInterval(gm.timerInterval);endGame()}},1000)}
+function updateTimer(){document.getElementById('g-timer-fill').style.width=(gm.timer/90)*100+'%'}
+
+// ── RENDER ──
+function renderGrid(){
+ const g=document.getElementById('g-grid');g.innerHTML='';
+ for(let r=0;r<SZ;r++)for(let c=0;c<SZ;c++){
+  const cell=document.createElement('div');cell.className='g-cell';cell.dataset.row=r;cell.dataset.col=c;
+  if(gm.grid[r][c]){const b=document.createElement('div');b.className=`blk ${BC(gm.grid[r][c])}`;b.textContent=gm.grid[r][c];cell.appendChild(b)}
+  g.appendChild(cell);
+ }
+}
+function renderQueue(){
+ const q=document.getElementById('g-queue');q.innerHTML='';
+ gm.queue.forEach((v,i)=>{
+  const b=document.createElement('div');
+  if(v){b.className=`g-queue-block ${BC(v)}`;b.textContent=v;b.dataset.index=i;
+   b.addEventListener('mousedown',e=>startDrag(e,i));
+   b.addEventListener('touchstart',e=>startDrag(e,i),{passive:false});
+  }else{b.className='g-queue-block empty'}
+  q.appendChild(b);
+ });
+}
+function updateHUD(){
+ document.getElementById('g-score-display').textContent=gm.score.toLocaleString();
+ document.getElementById('g-game-coins').textContent=st.coins;
+ document.getElementById('g-best-display').textContent=st.stats.bestScore.toLocaleString();
+ document.getElementById('g-moves-display').textContent=gm.moves;
+ document.getElementById('g-chain-display').textContent=gm.bestChain;
+}
+function updatePU(){Object.keys(PU).forEach(id=>{const b=document.getElementById('g-pu-'+id);if(b)b.classList.toggle('disabled',st.coins<PU[id].cost)})}
+function animCell(r,c,cls){const g=document.getElementById('g-grid'),cell=g.children[r*SZ+c];if(cell){const b=cell.querySelector('.blk');if(b){b.classList.remove(cls);void b.offsetWidth;b.classList.add(cls)}}}
+function scorePopup(r,c,pts){const g=document.getElementById('g-grid'),cell=g.children[r*SZ+c];if(!cell)return;const p=document.createElement('div');p.className='g-score-popup';p.textContent='+'+pts;cell.appendChild(p);setTimeout(()=>p.remove(),800)}
+function showCombo(chain){if(chain<2)return;const el=document.createElement('div');el.className='g-combo';el.textContent=chain+'x CHAIN!';el.style.color=['','','#ffd700','#ff7043','#e040fb','#00ffaa'][Math.min(chain,5)];document.getElementById('game-app').appendChild(el);setTimeout(()=>el.remove(),700)}
+
+// ── DRAG & DROP ──
+function startDrag(e,idx){
+ if(gm.over||gm.paused||gm.selectedPowerup)return;e.preventDefault();initA();
+ dragIdx=idx;dragBlock=gm.queue[idx];if(!dragBlock)return;
+ const t=e.touches?e.touches[0]:e;
+ ghostEl=document.createElement('div');ghostEl.className=`g-ghost ${BC(dragBlock)}`;ghostEl.textContent=dragBlock;
+ ghostEl.style.left=(t.clientX-27)+'px';ghostEl.style.top=(t.clientY-27)+'px';
+ document.body.appendChild(ghostEl);
+ document.addEventListener('mousemove',onDrag);document.addEventListener('touchmove',onDrag,{passive:false});
+ document.addEventListener('mouseup',endDrag);document.addEventListener('touchend',endDrag);haptic(5);
+}
+function onDrag(e){if(!ghostEl)return;e.preventDefault();const t=e.touches?e.touches[0]:e;
+ ghostEl.style.left=(t.clientX-27)+'px';ghostEl.style.top=(t.clientY-27)+'px';
+ document.querySelectorAll('.g-cell').forEach(c=>c.classList.remove('hl'));
+ const el=document.elementFromPoint(t.clientX,t.clientY);if(el){const cell=el.closest('.g-cell');
+  if(cell){const r=+cell.dataset.row,c=+cell.dataset.col;if(gm.grid[r][c]===0)cell.classList.add('hl')}}
+}
+function endDrag(e){
+ document.removeEventListener('mousemove',onDrag);document.removeEventListener('touchmove',onDrag);
+ document.removeEventListener('mouseup',endDrag);document.removeEventListener('touchend',endDrag);
+ document.querySelectorAll('.g-cell').forEach(c=>c.classList.remove('hl'));
+ if(!ghostEl)return;const t=e.changedTouches?e.changedTouches[0]:e;ghostEl.remove();ghostEl=null;
+ const el=document.elementFromPoint(t.clientX,t.clientY);if(el){const cell=el.closest('.g-cell');
+  if(cell){const r=+cell.dataset.row,c=+cell.dataset.col;if(gm.grid[r][c]===0){placeBlock(r,c,dragBlock,dragIdx);return}}}
+ dragBlock=null;dragIdx=-1;
+}
+
+// ── CORE LOGIC ──
+function placeBlock(row,col,val,qi){
+ gm.history.push({grid:gm.grid.map(r=>[...r]),queue:[...gm.queue],score:gm.score,moves:gm.moves});
+ if(gm.history.length>20)gm.history.shift();
+ gm.grid[row][col]=val;gm.queue[qi]=0;gm.moves++;st.stats.totalMoves++;
+ snd('place');haptic(8);renderGrid();animCell(row,col,'pop');
+ setTimeout(()=>processMerges(row,col),150);
+}
+function processMerges(cr,cc){
+ let totalChain=0;
+ function doMerge(){
+  const val=gm.grid[cr][cc];if(!val){finishTurn(totalChain);return}
+  const nb=getNeighbors(cr,cc,val);if(!nb.length){finishTurn(totalChain);return}
+  totalChain++;const pts=val*2*(1+Math.floor(nb.length*.5))*totalChain;
+  gm.score+=pts;gm.coinsEarned+=Math.floor(pts/10);
+  nb.forEach(n=>{gm.grid[n.r][n.c]=0});gm.grid[cr][cc]=val*2;
+  st.stats.totalMerges+=nb.length;st.stats.highestBlock=Math.max(st.stats.highestBlock,val*2);
+  snd(totalChain>1?'chain':'merge');haptic(totalChain*8);
+  renderGrid();animCell(cr,cc,'merge-in');scorePopup(cr,cc,pts);if(totalChain>=2)showCombo(totalChain);
+  setTimeout(doMerge,300);
+ }
+ doMerge();
+}
+function getNeighbors(r,c,val){const d=[[0,1],[0,-1],[1,0],[-1,0]],m=[];d.forEach(([dr,dc])=>{const nr=r+dr,nc=c+dc;if(nr>=0&&nr<SZ&&nc>=0&&nc<SZ&&gm.grid[nr][nc]===val)m.push({r:nr,c:nc})});return m}
+function finishTurn(chain){
+ gm.bestChain=Math.max(gm.bestChain,chain);st.stats.bestChain=Math.max(st.stats.bestChain,chain);
+ for(let i=0;i<QS;i++){if(!gm.queue[i])gm.queue[i]=genBlock()}
+ renderQueue();updateHUD();updatePU();
+ if(gm.mode==='classic'&&gm.score>=gm.target){levelUp();return}
+ if(isGridFull()){if(gm.mode==='zen'){zenClear();return}endGame()}
+ checkAch();save();
+}
+function isGridFull(){for(let r=0;r<SZ;r++)for(let c=0;c<SZ;c++)if(!gm.grid[r][c])return false;return true}
+function zenClear(){let mv=Infinity,mr=0,mc=0;for(let r=0;r<SZ;r++)for(let c=0;c<SZ;c++){if(gm.grid[r][c]>0&&gm.grid[r][c]<mv){mv=gm.grid[r][c];mr=r;mc=c}}gm.grid[mr][mc]=0;renderGrid();toast('🧘 Block cleared — relax & continue')}
+function levelUp(){
+ gm.level++;if(gm.mode==='classic')st.classicLevel=Math.max(st.classicLevel,gm.level);gm.target=classicTarget(gm.level);
+ let cl=0;for(let r=0;r<SZ&&cl<5;r++)for(let c=0;c<SZ&&cl<5;c++){if(gm.grid[r][c]>0){gm.grid[r][c]=0;cl++}}
+ const bonus=gm.level*50;st.coins+=bonus;gm.coinsEarned+=bonus;
+ document.getElementById('g-level-num').textContent=gm.level;document.getElementById('g-level-target').textContent=gm.target;
+ snd('levelup');haptic(30);toast(`🎉 Level ${gm.level}! +${bonus} coins`);renderGrid();renderQueue();updateHUD();save();
+}
+function endGame(){
+ gm.over=true;if(gm.timerInterval)clearInterval(gm.timerInterval);
+ st.stats.timePlayedSec+=Math.floor((Date.now()-gm.startTime)/1000);st.stats.gamesPlayed++;st.stats.totalScore+=gm.score;
+ const nb=gm.score>st.stats.bestScore;if(nb)st.stats.bestScore=gm.score;
+ const cr=Math.floor(gm.score/10)+gm.coinsEarned,gr=gm.score>=5000?Math.floor(gm.score/5000):0;
+ st.coins+=cr;st.gems+=gr;st.stats.totalCoins+=cr;
+ updateLB(gm.score);
+ if(gm.mode==='daily'){const k=new Date().toDateString();st.dailyBestScores[k]=Math.max(st.dailyBestScores[k]||0,gm.score);st.stats.dailiesCompleted++}
+ snd('gameover');haptic(50);
+ document.getElementById('g-go-title').textContent=nb?'🎉 New Best!':'Game Over!';
+ document.getElementById('g-go-score').textContent=gm.score.toLocaleString();
+ document.getElementById('g-go-best').textContent='Best: '+st.stats.bestScore.toLocaleString();
+ document.getElementById('g-go-coins').textContent=cr;document.getElementById('g-go-gems').textContent=gr;
+ document.getElementById('g-gameover-modal').classList.add('active');checkAch();save();
+}
+
+// ── POWERUPS ──
+function usePowerup(id){
+ if(gm.over||gm.paused)return;if(st.coins<PU[id].cost){toast('Not enough coins!');return}
+ if(id==='shuffle'){st.coins-=PU[id].cost;gm.queue=gm.queue.map(()=>genBlock());renderQueue();updateHUD();updatePU();snd('coin');haptic(15);toast('🔄 Queue shuffled!');save()}
+ else if(id==='undo'){if(!gm.history.length){toast('Nothing to undo!');return}st.coins-=PU[id].cost;const p=gm.history.pop();gm.grid=p.grid;gm.queue=p.queue;gm.score=p.score;gm.moves=p.moves;renderGrid();renderQueue();updateHUD();updatePU();snd('coin');haptic(15);toast('↩️ Move undone!');save()}
+ else if(id==='bomb'){gm.selectedPowerup='bomb';toast('💣 Tap a block to remove');document.querySelectorAll('.g-cell').forEach(cell=>{cell.style.cursor='crosshair';cell.onclick=function(){const r=+this.dataset.row,c=+this.dataset.col;if(gm.grid[r][c]>0&&gm.selectedPowerup==='bomb'){st.coins-=PU.bomb.cost;gm.grid[r][c]=0;gm.selectedPowerup=null;document.querySelectorAll('.g-cell').forEach(c2=>{c2.style.cursor='';c2.onclick=null});renderGrid();updateHUD();updatePU();snd('merge');haptic(20);save()}}})}
+ else if(id==='upgrade'){gm.selectedPowerup='upgrade';toast('⬆️ Tap a block to upgrade');document.querySelectorAll('.g-cell').forEach(cell=>{cell.style.cursor='pointer';cell.onclick=function(){const r=+this.dataset.row,c=+this.dataset.col;if(gm.grid[r][c]>0&&gm.selectedPowerup==='upgrade'){st.coins-=PU.upgrade.cost;gm.grid[r][c]*=2;st.stats.highestBlock=Math.max(st.stats.highestBlock,gm.grid[r][c]);gm.selectedPowerup=null;document.querySelectorAll('.g-cell').forEach(c2=>{c2.style.cursor='';c2.onclick=null});renderGrid();animCell(r,c,'pop');updateHUD();updatePU();snd('merge');haptic(20);setTimeout(()=>processMerges(r,c),200);save()}}})}
+}
+
+// ── PAUSE/RESUME ──
+function pauseGame(){if(gm.over)return;gm.paused=true;document.getElementById('g-pause-modal').classList.add('active')}
+function resumeGame(){gm.paused=false;document.getElementById('g-pause-modal').classList.remove('active')}
+function restartGame(){document.getElementById('g-pause-modal').classList.remove('active');document.getElementById('g-gameover-modal').classList.remove('active');if(gm.timerInterval)clearInterval(gm.timerInterval);startGame(gm.mode)}
+function quitGame(){document.getElementById('g-pause-modal').classList.remove('active');document.getElementById('g-gameover-modal').classList.remove('active');if(gm.timerInterval)clearInterval(gm.timerInterval);showScreen('g-menu')}
+
+// ── SHOP ──
+function renderShop(){
+ document.getElementById('g-shop-coins').textContent=st.coins;document.getElementById('g-shop-gems').textContent=st.gems;
+ const c=document.getElementById('g-shop-content');let h='<div class="g-shop-section"><h3>🎨 Themes</h3>';
+ THEMES.forEach(t=>{const ow=st.ownedThemes.includes(t.id),eq=st.equippedTheme===t.id;
+  h+=`<div class="g-shop-item ${ow?'owned':''} ${eq?'equipped':''}"><div class="si-preview" style="background:var(--g-primary)">${t.icon}</div><div class="si-details"><h4>${t.name}</h4><p>${eq?'✓ Equipped':ow?'Owned':t.price+' coins'}</p></div><div>`;
+  if(eq)h+=`<span style="color:var(--g-success);font-size:12px;font-weight:600">Active</span>`;
+  else if(ow)h+=`<button class="g-btn g-btn-sm g-btn-primary" onclick="G.equipTheme('${t.id}')">Equip</button>`;
+  else h+=`<button class="g-btn g-btn-sm g-btn-accent" onclick="G.buyTheme('${t.id}')">🪙 ${t.price}</button>`;
+  h+=`</div></div>`});
+ h+='</div><div class="g-shop-section"><h3>💰 Currency</h3>';
+ h+=`<div class="g-shop-item"><div class="si-preview" style="background:var(--g-coin)">🪙</div><div class="si-details"><h4>Free Coins</h4><p>Earn 100 coins</p></div><button class="g-btn g-btn-sm g-btn-success" onclick="G.freeCoins()">Free!</button></div>`;
+ h+=`<div class="g-shop-item"><div class="si-preview" style="background:var(--g-gem)">💎</div><div class="si-details"><h4>Convert to Gems</h4><p>500 coins → 5 gems</p></div><button class="g-btn g-btn-sm g-btn-accent" onclick="G.convertGems()">Convert</button></div>`;
+ h+='</div>';c.innerHTML=h;
+}
+function buyTheme(id){const t=THEMES.find(x=>x.id===id);if(!t||st.ownedThemes.includes(id))return;if(st.coins<t.price){toast('Not enough coins!');return}st.coins-=t.price;st.ownedThemes.push(id);equipTheme(id);save();renderShop();snd('coin');toast(`🎨 ${t.name} unlocked!`)}
+function equipTheme(id){st.equippedTheme=id;save();renderShop();toast(`🎨 Theme equipped!`)}
+function freeCoins(){st.coins+=100;st.stats.totalCoins+=100;save();renderShop();snd('coin');toast('🪙 +100 coins!')}
+function convertGems(){if(st.coins<500){toast('Need 500 coins!');return}st.coins-=500;st.gems+=5;save();renderShop();snd('coin');toast('💎 +5 gems!')}
+
+// ── ACHIEVEMENTS ──
+function checkAch(){let nu=[];ACHS.forEach(a=>{if(!st.achievements.includes(a.id)&&a.check(st.stats)){st.achievements.push(a.id);nu.push(a);st.coins+=50;st.stats.totalCoins+=50}});if(nu.length){save();nu.forEach(a=>toast(`🏆 ${a.name}!`))}}
+function renderAch(){const c=document.getElementById('g-ach-content');let h=`<p style="padding:14px 0 6px;color:var(--text-dim);font-size:12px">${st.achievements.length}/${ACHS.length} Unlocked</p>`;
+ ACHS.forEach(a=>{const u=st.achievements.includes(a.id);h+=`<div class="g-achievement ${u?'unlocked':''}"><div class="ach-icon">${a.icon}</div><div class="ach-info"><h4>${a.name}</h4><p>${a.desc}</p></div><div>${u?'✅':'🔒'}</div></div>`});c.innerHTML=h}
+
+// ── STATS ──
+function renderStats(){const s=st.stats,c=document.getElementById('g-stats-content'),hrs=Math.floor(s.timePlayedSec/3600),mins=Math.floor((s.timePlayedSec%3600)/60);
+ c.innerHTML=`<div class="g-stat-grid">
+  <div class="g-stat-card"><div class="sv">${s.bestScore.toLocaleString()}</div><div class="sl">Best Score</div></div>
+  <div class="g-stat-card"><div class="sv">${s.gamesPlayed}</div><div class="sl">Games Played</div></div>
+  <div class="g-stat-card"><div class="sv">${s.totalMerges}</div><div class="sl">Total Merges</div></div>
+  <div class="g-stat-card"><div class="sv">${s.highestBlock}</div><div class="sl">Highest Block</div></div>
+  <div class="g-stat-card"><div class="sv">${s.bestChain}x</div><div class="sl">Best Chain</div></div>
+  <div class="g-stat-card"><div class="sv">${s.totalMoves}</div><div class="sl">Total Moves</div></div>
+  <div class="g-stat-card"><div class="sv">${s.dailyStreak}🔥</div><div class="sl">Best Streak</div></div>
+  <div class="g-stat-card"><div class="sv">${hrs}h ${mins}m</div><div class="sl">Time Played</div></div>
+  <div class="g-stat-card"><div class="sv">${s.totalCoins.toLocaleString()}</div><div class="sl">Coins Earned</div></div>
+  <div class="g-stat-card"><div class="sv">${s.totalScore.toLocaleString()}</div><div class="sl">Total Score</div></div>
+  <div class="g-stat-card"><div class="sv">${s.dailiesCompleted}</div><div class="sl">Dailies Done</div></div>
+  <div class="g-stat-card"><div class="sv">${st.achievements.length}</div><div class="sl">Achievements</div></div></div>`}
+
+// ── SETTINGS ──
+function renderSettings(){const c=document.getElementById('g-settings-content');
+ c.innerHTML=`<div style="padding-top:14px">
+  <div class="g-setting"><div class="sl">🔊 Sound Effects</div><button class="g-toggle ${st.settings.sound?'on':''}" onclick="G.toggleSet('sound',this)"></button></div>
+  <div class="g-setting"><div class="sl">🎵 Music</div><button class="g-toggle ${st.settings.music?'on':''}" onclick="G.toggleSet('music',this)"></button></div>
+  <div class="g-setting"><div class="sl">📳 Haptic</div><button class="g-toggle ${st.settings.vibration?'on':''}" onclick="G.toggleSet('vibration',this)"></button></div>
+ </div><div style="margin-top:20px"><button class="g-btn g-btn-secondary g-btn-block" onclick="if(confirm('Reset progress?')){localStorage.removeItem('bf_save');location.reload()}" style="color:var(--g-danger)">🗑️ Reset Data</button></div>`}
+function toggleSet(k,btn){st.settings[k]=!st.settings[k];btn.classList.toggle('on',st.settings[k]);haptic(5);save()}
+
+// ── LEADERBOARD ──
+function updateLB(score){
+ if(!st.leaderboard.length)for(let i=0;i<19;i++)st.leaderboard.push({name:BOT_NAMES[i],score:Math.floor(Math.random()*20000)+500,isBot:true});
+ let pe=st.leaderboard.find(e=>!e.isBot);if(pe)pe.score=Math.max(pe.score,score);else st.leaderboard.push({name:'You',score,isBot:false});
+ st.leaderboard.forEach(e=>{if(e.isBot&&Math.random()<.3)e.score+=Math.floor(Math.random()*500)});
+ st.leaderboard.sort((a,b)=>b.score-a.score);st.leaderboard=st.leaderboard.slice(0,20);
+}
+function renderLB(){const c=document.getElementById('g-lb-content');if(!st.leaderboard.length)updateLB(0);let h='<div style="padding-top:14px">';
+ st.leaderboard.forEach((e,i)=>{const rc=i===0?'gold':i===1?'silver':i===2?'bronze':'',me=!e.isBot?'me':'',md=i===0?'🥇':i===1?'🥈':i===2?'🥉':'';
+  h+=`<div class="g-lb-entry ${me}"><div class="g-lb-rank ${rc}">${md||i+1}</div><div class="g-lb-name">${e.isBot?e.name:'⭐ You'}</div><div class="g-lb-score">${e.score.toLocaleString()}</div></div>`});
+ h+='</div>';c.innerHTML=h}
+
+// ── PROFILE ──
+function renderProfile(){const s=st.stats,lv=Math.floor(Math.sqrt(s.totalScore/100))+1,xc=s.totalScore-Math.pow(lv-1,2)*100,xn=Math.pow(lv,2)*100-Math.pow(lv-1,2)*100,xp=Math.min(100,Math.floor((xc/xn)*100));
+ const c=document.getElementById('g-profile-content');
+ c.innerHTML=`<div class="g-profile-header"><div class="g-profile-avatar">🎮</div><div class="g-profile-name">Player</div><div class="g-profile-level">Level ${lv}</div><div class="g-profile-xp"><div class="fill" style="width:${xp}%"></div></div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">${xc.toLocaleString()} / ${xn.toLocaleString()} XP</div></div>
+ <div class="g-stat-grid"><div class="g-stat-card"><div class="sv">${s.bestScore.toLocaleString()}</div><div class="sl">Best Score</div></div><div class="g-stat-card"><div class="sv">${s.gamesPlayed}</div><div class="sl">Games</div></div><div class="g-stat-card"><div class="sv">${st.achievements.length}/${ACHS.length}</div><div class="sl">Achievements</div></div><div class="g-stat-card"><div class="sv">${st.dailyStreak}🔥</div><div class="sl">Streak</div></div></div>
+ <div style="margin-top:14px"><h3 style="font-size:13px;color:var(--text-dim);margin-bottom:8px">💰 Wallet</h3><div class="g-stat-grid"><div class="g-stat-card"><div class="sv" style="color:var(--g-coin)">${st.coins}</div><div class="sl">Coins</div></div><div class="g-stat-card"><div class="sv" style="color:var(--g-gem)">${st.gems}</div><div class="sl">Gems</div></div></div></div>`}
+
+// ── DAILY ──
+function renderDaily(){const today=new Date(),todayStr=today.toDateString(),done=!!st.dailyBestScores[todayStr],c=document.getElementById('g-daily-content');
+ const yr=today.getFullYear(),mo=today.getMonth(),fd=new Date(yr,mo,1).getDay(),dm=new Date(yr,mo+1,0).getDate();
+ let cal='<div class="g-cal-grid">';['S','M','T','W','T','F','S'].forEach(d=>cal+=`<div class="g-cal-day" style="font-weight:700;background:transparent">${d}</div>`);
+ for(let i=0;i<fd;i++)cal+='<div class="g-cal-day" style="opacity:0"></div>';
+ for(let d=1;d<=dm;d++){const ds=new Date(yr,mo,d).toDateString(),it=d===today.getDate(),dn=!!st.dailyBestScores[ds];cal+=`<div class="g-cal-day ${dn?'completed':''} ${it?'today':''}">${d}</div>`}
+ cal+='</div>';
+ c.innerHTML=`<div class="g-daily-banner"><h3>📅 Daily Challenge</h3><p>${today.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})}</p><div class="streak-info">🔥 ${st.dailyStreak} Day Streak</div></div>
+ ${done?`<div style="text-align:center;padding:14px;background:var(--g-card);border-radius:12px;margin-bottom:14px"><p style="font-size:13px;color:var(--g-success);font-weight:600">✅ Completed!</p><p style="font-size:22px;font-weight:800;margin-top:6px">${st.dailyBestScores[todayStr].toLocaleString()}</p><button class="g-btn g-btn-primary" style="margin-top:10px" onclick="G.startGame('daily')">Play Again</button></div>`
+ :`<button class="g-btn g-btn-primary g-btn-block" style="margin-bottom:14px" onclick="G.startGame('daily')">▶️ Start Challenge</button>`}
+ ${cal}`}
+
+// ── INIT ──
+function init(){load();checkStreak();updateMenu()}
+init();
+
+// ── PUBLIC API ──
+return{showScreen,startGame,pauseGame,resumeGame,restartGame,quitGame,usePowerup,buyTheme,equipTheme,freeCoins,convertGems,toggleSet};
+})();
+
+document.addEventListener('contextmenu',e=>e.preventDefault());
+</script>
+</body>
+</html>

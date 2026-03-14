@@ -86,16 +86,33 @@
         filtered.forEach(function (game, idx) {
             var card = document.createElement("div");
             card.className = "game-card";
-            card.onclick = function () { openModal(game); };
+
+            // Navigate to detail page if available, otherwise open modal
+            card.onclick = function () {
+                if (game.detailPageUrl) {
+                    window.location.href = game.detailPageUrl;
+                } else {
+                    openModal(game);
+                }
+            };
+
             var badgeClass = game.badge === "new" ? "badge-new" : game.badge === "popular" ? "badge-popular" : "badge-featured";
             var stars = "";
             for (var s = 0; s < Math.floor(game.rating); s++) stars += "\u2605";
             if (game.rating % 1 >= 0.5) stars += "\u00BD";
 
+            // Handle SVG vs emoji icon types
+            var iconWrapperClass = "game-icon-wrapper" + (game.iconType === "svg" ? " svg-icon" : "");
+            var iconHtml = '<div class="' + iconWrapperClass + '" style="background:' + game.iconBg + ';">' + game.icon + '</div>';
+
+            // Button text and icon based on detail page availability
+            var viewBtnIcon = game.detailPageUrl ? "fas fa-external-link-alt" : "fas fa-eye";
+            var viewBtnText = game.detailPageUrl ? "View Game Page" : "View Details";
+
             card.innerHTML =
                 '<div class="game-card-image">' +
                 '<div class="game-visual" style="background:' + game.gradient + ';">' +
-                '<div class="game-icon-wrapper" style="background:' + game.iconBg + ';">' + game.icon + '</div>' +
+                iconHtml +
                 '</div>' +
                 '<div class="game-card-overlay"></div>' +
                 '<span class="game-card-badge ' + badgeClass + '">' + game.badge + '</span>' +
@@ -108,7 +125,7 @@
                 '<div class="game-rating"><span class="stars">' + stars + '</span><span class="rating-text">' + game.rating + '</span></div>' +
                 '<div class="game-platform"><i class="fab fa-android"></i> Android</div>' +
                 '</div>' +
-                '<div class="game-download-btn"><i class="fas fa-eye"></i> View Details</div>' +
+                '<div class="game-download-btn"><i class="' + viewBtnIcon + '"></i> ' + viewBtnText + '</div>' +
                 '</div>';
 
             gamesGrid.appendChild(card);
@@ -128,6 +145,15 @@
         document.getElementById("modalHeader").style.background = game.gradient;
         document.getElementById("modalIcon").style.background = game.iconBg;
         document.getElementById("modalIcon").innerHTML = game.icon;
+
+        // Toggle SVG icon class for proper styling
+        var modalIconEl = document.getElementById("modalIcon");
+        if (game.iconType === "svg") {
+            modalIconEl.classList.add("svg-icon");
+        } else {
+            modalIconEl.classList.remove("svg-icon");
+        }
+
         document.getElementById("modalCategory").textContent = game.category;
         document.getElementById("modalTitle").textContent = game.title;
         var starsHtml = "";
@@ -137,7 +163,17 @@
         document.getElementById("modalFeatures").innerHTML = game.features.map(function (f) {
             return '<div class="modal-feature"><i class="fas fa-check-circle"></i> ' + f + '</div>';
         }).join("");
-        document.getElementById("modalDownload").href = game.playStoreUrl || "#";
+
+        // Handle download/detail button
+        var downloadBtn = document.getElementById("modalDownload");
+        if (game.detailPageUrl) {
+            downloadBtn.href = game.detailPageUrl;
+            downloadBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> View Game Page';
+        } else {
+            downloadBtn.href = game.playStoreUrl || "#";
+            downloadBtn.innerHTML = '<i class="fab fa-google-play"></i> Download on Play Store';
+        }
+
         gameModal.classList.add("active");
         document.body.style.overflow = "hidden";
     }

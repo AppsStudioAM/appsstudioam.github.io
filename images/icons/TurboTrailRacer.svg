@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+     width="512" 
+     height="512" 
+     viewBox="0 0 512 512">
+
+    <!-- BACKGROUND -->
+    <path d="M56,0 L456,0 Q512,0 512,56 L512,456 Q512,512 456,512 L56,512 Q0,512 0,456 L0,56 Q0,0 56,0 Z" fill="#1A237E"/>
+    <path d="M66,10 L446,10 Q502,10 502,66 L502,446 Q502,502 446,502 L66,502 Q10,502 10,446 L10,66 Q10,10 66,10 Z" fill="#0D47A1"/>
+
+    <!-- SKY GRADIENT LAYERS -->
+    <path d="M66,10 L446,10 Q502,10 502,66 L502,180 L10,180 L10,66 Q10,10 66,10 Z" fill="#1565C0"/>
+    <path d="M10,150 L502,150 L502,240 L10,240 Z" fill="#1976D2"/>
+    <path d="M10,210 L502,210 L502,290 L10,290 Z" fill="#2196F3"/>
+
+    <!-- SUN -->
+    <path d="M400,80 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0" fill="#FFD54F"/>
+    <path d="M400,80 m-35,0 a35,35 0 1,1 70,0 a35,35 0 1,1 -70,0" fill="#FFECB3"/>
+    <path d="M400,25 L404,40 L396,40 Z" fill="#FFD54F"/>
+    <path d="M400,135 L404,120 L396,120 Z" fill="#FFD54F"/>
+    <path d="M345,80 L360,76 L360,84 Z" fill="#FFD54F"/>
+    <path d="M455,80 L440,76 L440,84 Z" fill="#FFD54F"/>
+    <path d="M361,41 L370,53 L364,57 Z" fill="#FFD54F"/>
+    <path d="M439,119 L430,107 L436,103 Z" fill="#FFD54F"/>
+    <path d="M439,41 L430,53 L436,57 Z" fill="#FFD54F"/>
+    <path d="M361,119 L370,107 L364,103 Z" fill="#FFD54F"/>
+
+    <!-- CLOUDS -->
+    <path d="M80,100 m-20,0 a20,14 0 1,1 40,0 a20,14 0 1,1 -40,0" fill="#64B5F6" fill-opacity="0.6"/>
+    <path d="M105,95 m-18,0 a18,12 0 1,1 36,0 a18,12 0 1,1 -36,0" fill="#64B5F6" fill-opacity="0.6"/>
+    <path d="M60,95 m-15,0 a15,10 0 1,1 30,0 a15,10 0 1,1 -30,0" fill="#64B5F6" fill-opacity="0.6"/>
+    <path d="M230,70 m-22,0 a22,15 0 1,1 44,0 a22,15 0 1,1 -44,0" fill="#64B5F6" fill-opacity="0.5"/>
+    <path d="M258,65 m-20,0 a20,13 0 1,1 40,0 a20,13 0 1,1 -40,0" fill="#64B5F6" fill-opacity="0.5"/>
+    <path d="M160,140 m-16,0 a16,10 0 1,1 32,0 a16,10 0 1,1 -32,0" fill="#90CAF9" fill-opacity="0.4"/>
+    <path d="M180,136 m-14,0 a14,9 0 1,1 28,0 a14,9 0 1,1 -28,0" fill="#90CAF9" fill-opacity="0.4"/>
+
+    <!-- DISTANT MOUNTAINS -->
+    <path d="M10,310 L100,190 L150,230 L200,180 L280,260 L330,220 L420,280 L502,230 L502,310 Z" fill="#1B5E20" fill-opacity="0.5"/>
+    <path d="M10,330 L80,250 L140,290 L210,240 L270,280 L350,250 L430,300 L502,270 L502,330 Z" fill="#2E7D32" fill-opacity="0.6"/>
+
+    <!-- TERRAIN / HILLS -->
+    <path d="M10,420 L10,380 Q80,380 120,360 Q160,340 200,310 Q220,295 240,310 Q280,340 320,370 Q380,410 440,395 Q475,388 502,400 L502,420 Z" fill="#388E3C"/>
+    <path d="M10,420 L10,390 Q80,390 120,372 Q160,352 200,322 Q218,308 236,318 Q275,345 320,378 Q380,415 440,402 Q475,395 502,407 L502,420 Z" fill="#43A047"/>
+    <path d="M10,420 L10,398 Q80,398 120,380 Q160,360 200,332 Q215,320 230,328 Q270,352 320,384 Q380,418 440,407 Q475,400 502,412 L502,420 Z" fill="#4CAF50"/>
+
+    <!-- DIRT/GROUND BOTTOM -->
+    <path d="M10,420 L502,420 L502,456 Q502,502 446,502 L66,502 Q10,502 10,456 Z" fill="#5D4037"/>
+    <path d="M10,440 L502,440" stroke="#4E342E" stroke-width="1.5" fill="none"/>
+    <path d="M10,460 L502,460" stroke="#4E342E" stroke-width="1" fill="none"/>
+    <path d="M10,480 L502,480" stroke="#4E342E" stroke-width="0.8" fill="none"/>
+    <path d="M80,445 m-4,0 a4,3 0 1,1 8,0 a4,3 0 1,1 -8,0" fill="#4E342E"/>
+    <path d="M200,455 m-5,0 a5,3 0 1,1 10,0 a5,3 0 1,1 -10,0" fill="#4E342E"/>
+    <path d="M350,448 m-6,0 a6,3 0 1,1 12,0 a6,3 0 1,1 -12,0" fill="#4E342E"/>
+    <path d="M450,465 m-4,0 a4,2 0 1,1 8,0 a4,2 0 1,1 -8,0" fill="#4E342E"/>
+
+    <!-- GRASS TUFTS ON HILL -->
+    <path d="M100,370 L105,355 L110,370" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <path d="M106,370 L112,352 L118,370" stroke="#388E3C" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M155,348 L160,333 L165,348" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <path d="M350,385 L355,372 L360,385" stroke="#2E7D32" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M420,400 L425,388 L430,400" stroke="#388E3C" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M280,365 L285,352 L290,365" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+    <!-- VEHICLE SHADOW ON GROUND -->
+    <path d="M180,395 m-50,0 a50,8 0 1,1 100,0 a50,8 0 1,1 -100,0" fill="#1B5E20" fill-opacity="0.35"/>
+
+    <!-- SUSPENSION SPRINGS -->
+    <path d="M145,330 L140,310 L150,310 L145,290" stroke="#78909C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M260,310 L255,290 L265,290 L260,270" stroke="#78909C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- UNDERCARRIAGE / CHASSIS -->
+    <path d="M125,310 L145,315 L250,295 L270,290 Z" fill="#37474F"/>
+
+    <!-- BACK WHEEL -->
+    <path d="M145,340 m-32,0 a32,32 0 1,1 64,0 a32,32 0 1,1 -64,0" fill="#212121"/>
+    <path d="M145,340 m-28,0 a28,28 0 1,1 56,0 a28,28 0 1,1 -56,0" fill="#424242"/>
+    <path d="M145,340 m-22,0 a22,22 0 1,1 44,0 a22,22 0 1,1 -44,0" fill="#212121"/>
+    <path d="M145,340 m-14,0 a14,14 0 1,1 28,0 a14,14 0 1,1 -28,0" fill="#B0BEC5"/>
+    <path d="M145,340 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0" fill="#90A4AE"/>
+    <path d="M145,340 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" fill="#CFD8DC"/>
+    <path d="M145,326 L145,354" stroke="#78909C" stroke-width="2.5" fill="none"/>
+    <path d="M131,340 L159,340" stroke="#78909C" stroke-width="2.5" fill="none"/>
+    <path d="M135,330 L155,350" stroke="#78909C" stroke-width="2" fill="none"/>
+    <path d="M135,350 L155,330" stroke="#78909C" stroke-width="2" fill="none"/>
+    <path d="M145,308 L145,314" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M145,366 L145,372" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M113,340 L119,340" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M171,340 L177,340" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M122,317 L126,321" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M164,359 L168,363" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M122,363 L126,359" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M164,321 L168,317" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+    <!-- FRONT WHEEL -->
+    <path d="M265,318 m-32,0 a32,32 0 1,1 64,0 a32,32 0 1,1 -64,0" fill="#212121"/>
+    <path d="M265,318 m-28,0 a28,28 0 1,1 56,0 a28,28 0 1,1 -56,0" fill="#424242"/>
+    <path d="M265,318 m-22,0 a22,22 0 1,1 44,0 a22,22 0 1,1 -44,0" fill="#212121"/>
+    <path d="M265,318 m-14,0 a14,14 0 1,1 28,0 a14,14 0 1,1 -28,0" fill="#B0BEC5"/>
+    <path d="M265,318 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0" fill="#90A4AE"/>
+    <path d="M265,318 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0" fill="#CFD8DC"/>
+    <path d="M265,304 L265,332" stroke="#78909C" stroke-width="2.5" fill="none"/>
+    <path d="M251,318 L279,318" stroke="#78909C" stroke-width="2.5" fill="none"/>
+    <path d="M255,308 L275,328" stroke="#78909C" stroke-width="2" fill="none"/>
+    <path d="M255,328 L275,308" stroke="#78909C" stroke-width="2" fill="none"/>
+    <path d="M265,286 L265,292" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M265,344 L265,350" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M233,318 L239,318" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M291,318 L297,318" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M242,295 L246,299" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M284,337 L288,341" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M242,341 L246,337" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M284,299 L288,295" stroke="#616161" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+    <!-- VEHICLE BODY -->
+    <path d="M120,295 L130,285 L155,280 L200,268 L245,255 L275,250 L285,255 L288,265 L282,275 L260,282 L155,305 L130,310 L120,308 Z" fill="#E53935"/>
+    <path d="M130,285 L155,280 L200,268 L245,255 L275,250 L280,253 L245,260 L200,273 L155,285 L130,290 Z" fill="#EF5350"/>
+
+    <!-- CABIN / ROLL CAGE -->
+    <path d="M170,275 L185,240 L195,235 L240,222 L255,225 L258,240 L255,252 L200,265 L175,272 Z" fill="#C62828"/>
+    <path d="M170,275 L185,240 L195,235 L240,222 L255,225 L258,240 L255,252" stroke="#B71C1C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- WINDOW -->
+    <path d="M190,268 L198,245 L235,234 L243,240 L240,255 L200,265 Z" fill="#29B6F6"/>
+    <path d="M198,245 L203,245 L196,262 L193,263 Z" fill="#4FC3F7" fill-opacity="0.7"/>
+    <path d="M215,257 L222,238" stroke="#0288D1" stroke-width="2" fill="none"/>
+
+    <!-- FRONT BUMPER -->
+    <path d="M275,250 L295,245 L298,250 L295,260 L285,263 L280,260 Z" fill="#B71C1C"/>
+
+    <!-- HEADLIGHT -->
+    <path d="M290,248 m-5,0 a5,4 0 1,1 10,0 a5,4 0 1,1 -10,0" fill="#FFF9C4"/>
+    <path d="M290,248 m-3,0 a3,2 0 1,1 6,0 a3,2 0 1,1 -6,0" fill="#FFFFFF"/>
+
+    <!-- REAR BUMPER -->
+    <path d="M115,298 L120,295 L120,310 L115,312 L110,308 Z" fill="#B71C1C"/>
+
+    <!-- TAIL LIGHT -->
+    <path d="M113,300 m-3,0 a3,4 0 1,1 6,0 a3,4 0 1,1 -6,0" fill="#FF7043"/>
+
+    <!-- RACING STRIPE -->
+    <path d="M135,293 L260,260 L260,265 L135,298 Z" fill="#FF8F00" fill-opacity="0.8"/>
+
+    <!-- EXHAUST PIPE -->
+    <path d="M108,305 L98,308 L96,305 L105,302 Z" fill="#78909C"/>
+
+    <!-- TURBO FLAME -->
+    <path d="M98,305 Q70,300 55,310 Q65,295 80,298 Q60,280 50,290 Q65,270 82,290 Q75,265 90,285 Q88,275 95,290 L98,300 Z" fill="#FF6D00"/>
+    <path d="M98,304 Q78,300 68,306 Q75,295 85,298 Q72,285 65,292 Q78,278 88,292 Q85,280 93,290 L96,300 Z" fill="#FF9100"/>
+    <path d="M98,303 Q85,300 78,304 Q82,296 88,298 Q82,290 78,295 Q85,285 90,294 Q88,288 93,293 L96,300 Z" fill="#FFAB00"/>
+    <path d="M98,302 Q90,300 86,303 Q88,298 92,299 Q90,294 93,296 L96,300 Z" fill="#FFD600"/>
+
+    <!-- SPEED LINES -->
+    <path d="M50,265 L95,258" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.7"/>
+    <path d="M35,280 L85,275" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M45,295 L80,290" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5"/>
+    <path d="M55,250 L90,245" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5"/>
+    <path d="M40,310 L75,305" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.4"/>
+
+    <!-- DUST / DIRT PARTICLES -->
+    <path d="M90,370 m-12,0 a12,8 0 1,1 24,0 a12,8 0 1,1 -24,0" fill="#8D6E63" fill-opacity="0.5"/>
+    <path d="M70,365 m-10,0 a10,7 0 1,1 20,0 a10,7 0 1,1 -20,0" fill="#A1887F" fill-opacity="0.4"/>
+    <path d="M55,358 m-8,0 a8,5 0 1,1 16,0 a8,5 0 1,1 -16,0" fill="#BCAAA4" fill-opacity="0.3"/>
+    <path d="M105,378 m-8,0 a8,5 0 1,1 16,0 a8,5 0 1,1 -16,0" fill="#8D6E63" fill-opacity="0.4"/>
+    <path d="M75,350 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0" fill="#795548" fill-opacity="0.6"/>
+    <path d="M55,345 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0" fill="#795548" fill-opacity="0.5"/>
+    <path d="M95,355 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0" fill="#6D4C41" fill-opacity="0.6"/>
+    <path d="M65,340 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0" fill="#795548" fill-opacity="0.4"/>
+    <path d="M45,355 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0" fill="#8D6E63" fill-opacity="0.4"/>
+
+    <!-- DECORATIVE STARS -->
+    <path d="M340,160 L345,145 L350,160 L365,155 L352,165 L360,178 L347,170 L340,182 L340,168 L325,170 Z" fill="#FFD54F"/>
+    <path d="M60,180 L63,172 L66,180 L74,178 L68,183 L71,190 L65,186 L60,192 L60,185 L52,187 Z" fill="#FFF176" fill-opacity="0.8"/>
+    <path d="M440,160 L442,155 L444,160 L449,159 L445,162 L447,167 L443,164 L440,168 L440,163 L435,164 Z" fill="#FFF176" fill-opacity="0.7"/>
+    <path d="M310,120 L312,115 L314,120 L319,119 L315,122 L317,127 L313,124 L310,128 L310,123 L305,124 Z" fill="#FFEE58" fill-opacity="0.6"/>
+
+    <!-- HEADLIGHT BEAM -->
+    <path d="M295,248 L340,230 L345,240 L298,252 Z" fill="#FFF9C4" fill-opacity="0.2"/>
+    <path d="M295,248 L360,225 L365,232 L298,250 Z" fill="#FFF9C4" fill-opacity="0.1"/>
+
+    <!-- BORDER FRAME -->
+    <path d="M56,0 L456,0 Q512,0 512,56 L512,456 Q512,512 456,512 L56,512 Q0,512 0,456 L0,56 Q0,0 56,0 Z" stroke="#FF6D00" stroke-width="6" fill="none"/>
+    <path d="M60,4 L452,4 Q508,4 508,60 L508,452 Q508,508 452,508 L60,508 Q4,508 4,452 L4,60 Q4,4 60,4 Z" stroke="#FFB300" stroke-width="2" fill="none"/>
+
+    <!-- RACING BADGE -->
+    <path d="M430,410 m-28,0 a28,28 0 1,1 56,0 a28,28 0 1,1 -56,0" fill="#FF6D00"/>
+    <path d="M430,410 m-24,0 a24,24 0 1,1 48,0 a24,24 0 1,1 -48,0" fill="#FFB300"/>
+    <path d="M430,410 m-20,0 a20,20 0 1,1 40,0 a20,20 0 1,1 -40,0" fill="#FFFFFF"/>
+    <path d="M420,400 L430,400 L430,410 L420,410 Z" fill="#212121"/>
+    <path d="M430,400 L440,400 L440,410 L430,410 Z" fill="#FFFFFF"/>
+    <path d="M420,410 L430,410 L430,420 L420,420 Z" fill="#FFFFFF"/>
+    <path d="M430,410 L440,410 L440,420 L430,420 Z" fill="#212121"/>
+
+    <!-- ANTENNA WITH FLAG -->
+    <path d="M195,235 L188,200" stroke="#78909C" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <path d="M188,200 L205,195 L205,208 L188,212 Z" fill="#FF6D00"/>
+    <path d="M188,200 L205,195 L205,201 L188,206 Z" fill="#FFB300"/>
+
+</svg>
